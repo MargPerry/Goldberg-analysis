@@ -1,0 +1,60 @@
+---
+title: "Restructing data"
+author: "Margaret"
+date: "October 23, 2019"
+output: pdf_document
+---
+
+```{r}
+
+library(psysds364data)
+library(devtools)
+library(tidyr)
+library(mosaic)
+library(dplyr)
+library(ggplot2)
+```
+```{r}
+if(!"tinytex" %in% rownames(installed.packages())) install.packages("tinytex")
+
+tinytex::install_tinytex()
+install_github("crsh/papaja")
+```
+
+```{r}
+data("Goldberg_callie")
+view(Goldberg_callie)
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
