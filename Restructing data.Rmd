@@ -27,6 +27,15 @@ names(select(Goldberg_callie, contains("activ")))
 
 
 
+```{r}
+
+
+
+```
+
+
+
+
 
 
 
