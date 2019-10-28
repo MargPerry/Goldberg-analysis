@@ -6,7 +6,6 @@ output: pdf_document
 ---
 
 ```{r}
-
 library(psysds364data)
 library(devtools)
 library(tidyr)
@@ -14,16 +13,13 @@ library(mosaic)
 library(dplyr)
 library(ggplot2)
 ```
-```{r}
-if(!"tinytex" %in% rownames(installed.packages())) install.packages("tinytex")
 
-tinytex::install_tinytex()
-install_github("crsh/papaja")
-```
 
 ```{r}
 data("Goldberg_callie")
 view(Goldberg_callie)
+attributes(Goldberg_callie$w14toys2_1)
+names(select(Goldberg_callie, contains("activ")))
 
 
 ```
