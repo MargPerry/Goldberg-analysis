@@ -14,12 +14,7 @@ library(mosaic)
 library(dplyr)
 library(ggplot2)
 ```
-```{r}
-if(!"tinytex" %in% rownames(installed.packages())) install.packages("tinytex")
 
-tinytex::install_tinytex()
-install_github("crsh/papaja")
-```
 
 ```{r}
 data("Goldberg_callie")
