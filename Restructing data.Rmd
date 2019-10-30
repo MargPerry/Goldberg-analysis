@@ -21,10 +21,15 @@ view(Goldberg_callie)
 attributes(Goldberg_callie$w14toys2_1)
 names(select(Goldberg_callie, contains("activ")))
 
-
 ```
 
 
+# Suggested Variable Select
+```{r}
+dataSelect<- Goldberg_callie%>%
+  select(famid, sexor, contains("w16toys"), contains("14hht"), contains("14chcare"))
+
+```
 
 
 ```{r}
