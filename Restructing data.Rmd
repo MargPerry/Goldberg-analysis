@@ -27,7 +27,26 @@ names(select(Goldberg_callie, contains("activ")))
 # Suggested Variable Select
 ```{r}
 dataSelect<- Goldberg_callie%>%
-  select(famid, sexor, contains("w16toys"), contains("14hht"), contains("14chcare"))
+  select(famid, sexor, contains("w16toys"), contains("14hht"), contains("14chcare"), )
+
+
+````
+
+
+
+#Get Demagraphics for 
+
+```{r}
+# Sexuality
+# Heterosexual and Same Sex Demagraphics
+
+
+```
+
+```{r}
+# Race
+# Income
+#Eucation
 
 ```
 
