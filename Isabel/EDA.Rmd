@@ -8,6 +8,83 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+library(tidyverse)
+library(psysds364data)
+library(dplyr)
+library(ggplot2)
+library(mosaic)
+library(devtools)
+
+```
+
+```{r}
+names(select(Goldberg_callie, contains("toys")))
+
+```
+
+
+```{r}
+dataSelect<- Goldberg_callie%>%
+  select(famid, sexor, contains("w16toys"), contains("14hht"), contains("14chcare"))
+
+```
+
+```{r}
+names(select(Goldberg_callie, contains("chcare")))
+# keep the toys data in w16
+#
+
+```
+
+
+```{r}
+names(select(Goldberg_callie, contains("hht")))
+# keep the toys data in w16
+#
+
+```
+
+
+
+```{r}
+names(select(Goldberg_callie, contains("w14")))
+# keep the Division of household tasks for w14
+# 
+
+```
+
+```{r}
+# Look through all data that is not based on the week
+
+names(select(Goldberg_callie, !contains("w14")))
+```
+
+
+
+
+```{r}
+# data we want to keep that is not in the wave format
+# familyid, 
+
+```
+
+
+```{r}
+#select variables we want
+
+```
+
+```{r}
+
+#filter out the na data
+
+
+```
+
+
+```{r}
+#filter for the 16 waves
+
 
 
 ```
