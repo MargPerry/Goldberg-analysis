@@ -21,7 +21,6 @@ view(Goldberg_callie)
 attributes(Goldberg_callie$w14toys2_1)
 names(select(Goldberg_callie, contains("activ")))
 
-
 ```
 
 
