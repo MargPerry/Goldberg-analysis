@@ -40,8 +40,15 @@ attributes(Goldberg_callie$w16activ3_2)
 # Suggested Variable Select
 ```{r}
 dataSelect<- Goldberg_callie%>%
-  select(famid, sexor, contains("w16toys"), contains("14hht"), contains("14chcare"))
+  select(famid, sexor, gender_1, gender_2,  contains("gender"), contains("w16toys"), contains("14hht"), contains("14chcare"),w14CBCLrace_1,w14CBCLrace_2,  contains("w12Gay"), contains("edu"), w11FamInc_1,  contains("activ16"), contains("LGBTCI"), contains("w14CBCLrace_1"))
 
+
+```
+
+
+```{r}
+GoldbergCallieFiltered<- dataSelect2%>% 
+  filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2))
 
 ```
 
