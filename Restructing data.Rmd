@@ -46,6 +46,13 @@ dataSelect<- Goldberg_callie%>%
 ```
 
 
+```{r}
+GoldbergCallieFiltered<- dataSelect2%>% 
+  filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2))
+
+```
+
+
 
 #Get Demagraphics for 
 
