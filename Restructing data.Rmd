@@ -40,7 +40,7 @@ attributes(Goldberg_callie$w16activ3_2)
 # Suggested Variable Select
 ```{r}
 dataSelect<- Goldberg_callie%>%
-  select(famid, sexor, contains("w16toys"), contains("14hht"), contains("14chcare"))
+  select(famid, sexor, gender_1, gender_2,  contains("gender"), contains("w16toys"), contains("14hht"), contains("14chcare"),w14CBCLrace_1,w14CBCLrace_2,  contains("w12Gay"), contains("edu"), w11FamInc_1,  contains("activ16"), contains("LGBTCI"), contains("w14CBCLrace_1"))
 
 
 ```
