@@ -94,15 +94,36 @@ hetero_gb<- Goldberg_callie%>%
 # Race
 attributes(Goldberg_callie$w11Race_2)
 attributes(Goldberg_callie$w14CBCLrace_1)
+
+count(Goldberg_callie, var="w11Race_2")
+count(Goldberg_callie, var="w14CBCLrace_1")
+
+
 # Income
+attributes(Goldberg_callie$w11FamInc_1)
+summary(Goldberg_callie$w11FamInc_1 )
+
 #Eucation
+attributes(Goldberg_callie$w11Educ_1)
+attributes(Goldberg_callie$w11Educ_2)
+
+count(Goldberg_callie, var="w11Educ_1")
+count(Goldberg_callie, var="w11Educ_2")
+
 
 ```
 
+```{r}          
+Goldberg_callie2<- Goldberg_callie%>%
+  mutate(ww11FamInc=as.integer(w11FamInc_1))%>%
+mutate( w11FamInc= ifelse(w11FamInc_1 %in% 0:20000, "20k or less", ifelse(w11FamInc_1 %in% 20001:40000, "20k-40k", ifelse(w11FamInc_1 %in% 40001:60000, "40k-60k", ifelse(w11FamInc_1 %in% 60001:80000, "60k-80k", ifelse(w11FamInc_1 %in% 80001:100000, "80k-100k", ifelse(w11FamInc_1 %in% 100001:730000, "10000k+", "NA" )))))))
 
-```{r}
+Goldberg_callie2<- Goldberg_callie2%>%
+  select(w11FamInc)
+View(Goldberg_callie2)
 
-
+count(Goldberg_callie2, var="w11FamInc")
+count(Goldberg_callie, var="w11FamInc_1")
 
 ```
 
