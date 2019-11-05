@@ -95,7 +95,7 @@ hetero_gb<- Goldberg_callie%>%
 attributes(Goldberg_callie$w11Race_2)
 attributes(Goldberg_callie$w14CBCLrace_1)
 # Income
-#Eucation
+#Education
 
 ```
 
