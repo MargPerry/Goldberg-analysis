@@ -1,0 +1,22 @@
+---
+title: "FinalDataFilter"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Methods 
+```{r}
+
+
+
+```
+
+
+
+We have removed from the data cases in which there was no data reportted on the 
+
+

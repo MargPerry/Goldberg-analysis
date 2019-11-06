@@ -187,6 +187,7 @@ count(Goldberg_callie,var="CollegePlus_2" )
 
 ```{r}
 # Race
+<<<<<<< HEAD
 attributes(GoldbergCallieFiltered$w11Race_2)
 attributes(GoldbergCallieFiltered$w14CBCLrace_1)
 
@@ -204,14 +205,17 @@ attributes(GoldbergCallieFiltered$w11Educ_2)
 
 count(GoldbergCallieFiltered, var="w11Educ_1")
 count(GoldbergCallieFiltered, var="w11Educ_2")
+=======
+attributes(Goldberg_callie$w11Race_2)
+attributes(Goldberg_callie$w14CBCLrace_1)
+# Income
+#Education
+>>>>>>> 14feebc0bc6c1f3edf3b7a597c427b5bc3c78181
 
 ```
 
-```{r}          
-Goldberg_callie2<- Goldberg_callie%>%
-  mutate(ww11FamInc=as.integer(w11FamInc_1))%>%
-mutate( w11FamInc= ifelse(w11FamInc_1 %in% 0:20000, "20k or less", ifelse(w11FamInc_1 %in% 20001:40000, "20k-40k", ifelse(w11FamInc_1 %in% 40001:60000, "40k-60k", ifelse(w11FamInc_1 %in% 60001:80000, "60k-80k", ifelse(w11FamInc_1 %in% 80001:100000, "80k-100k", ifelse(w11FamInc_1 %in% 100001:730000, "10000k+", "NA" )))))))
 
+<<<<<<< HEAD
 Goldberg_callieViewable2<- Goldberg_callie2%>%
   select(w11FamInc)
 View(Goldberg_callie2)
@@ -230,6 +234,10 @@ count(Goldberg_callie, var="w11FamInc_1")
 #ggplot(Goldberg_callie2, aes(x= w11FamInc))+geom_histogram()
 
 summary(Goldberg_callie2$w11FamInc)
+=======
+```{r}
+
+>>>>>>> 14feebc0bc6c1f3edf3b7a597c427b5bc3c78181
 
 ```
 

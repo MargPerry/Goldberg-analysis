@@ -1,0 +1,65 @@
+---
+title: "DataWrangle"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+dataSelect<- Goldberg_callie%>%
+  select(famid, sexor, gender_1, gender_2,  contains("gender"), contains("w16toys"), contains("14hht"), contains("14chcare"),contains("race"), contains("w12Gay"), contains("edu"), w11FamInc_1,  contains("activ16"), contains("LGBTCI"), contains("w14CBCLrace_1"))
+
+```
+
+
+```{r}
+
+dataSelect2<- Goldberg_callie%>%
+  select(famid, sexor, gender_1, gender_2,  contains("gender"), contains("w16toys"), contains("14hht"),contains("16hht"), contains("14chcare"),w14CBCLrace_1,w14CBCLrace_2,  contains("w12Gay"), contains("edu"), w11FamInc_1,  contains("16activ"), contains("LGBTCI"), contains("w14CBCLrace_1"))
+
+
+```
+
+```{r}
+dataSelect3<- dataSelect2%>% 
+  filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2) , !is.na(w16toys5_2), !is.na(w14HHT1_1), !is.na(w14HHT2_1) , !is.na(w14HHT3_1), !is.na(w14HHT4_2),!is.na(w14HHT5_1),!is.na(w14HHT6_1), !is.na(w14HHT7_1), !is.na(w14HHT8_1), !is.na(w14HHT9_1), !is.na(w14HHT10_1), !is.na(w14HHT11_1), !is.na(w14HHT12_1),!is.na(w14HHT13_1),!is.na(w14HHT1_2), !is.na(w14HHT3_2), !is.na(w14HHT4_2), !is.na(w14HHT5_2),!is.na(w14HHT6_2),!is.na(w14HHT7_2), !is.na(w14HHT8_2), !is.na(w14HHT9_2), !is.na(w14HHT10_2), !is.na(w14HHT11_2), !is.na(w14HHT12_2), !is.na(w14HHT13_2),
+         !is.na(w16HHT1_1), !is.na(w16HHT2_1) , !is.na(w16HHT3_1), !is.na(w16HHT4_2),!is.na(w16HHT5_1),!is.na(w16HHT6_1), !is.na(w16HHT7_1), !is.na(w16HHT8_1), !is.na(w16HHT9_1), !is.na(w16HHT10_1), !is.na(w16HHT11_1), !is.na(w16HHT12_1),!is.na(w16HHT13_1),!is.na(w16HHT1_2), !is.na(w16HHT3_2), !is.na(w16HHT4_2), !is.na(w16HHT5_2),!is.na(w16HHT6_2),!is.na(w16HHT7_2), !is.na(w16HHT8_2), !is.na(w16HHT9_2), !is.na(w16HHT10_2), !is.na(w16HHT11_2), !is.na(w16HHT12_2), !is.na(w16HHT13_2), !is.na(w16activ1_1),!is.na(w16activ2_1),!is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1))
+     #,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 #                   ), #!is.na(w15HHT2_2))#,!is.na(w15HHT1_2), !is.na(w15HHT12_2))
+                                                                                 # !is.na(contains("gender")))
+#!is.na(contains("14hht")))
+#, !is.na(contains("14chcare")),!is.na(w14CBCLrace_1), !is.na(w14CBCLrace_2),  !is.na(contains("w12Gay")), !is.na(contains("edu")), !is.na(w11FamInc_1), !is.na(contains("activ16")), !is.na(contains("LGBTCI")), !is.na(contains("w14CBCLrace_1")))
+
+#View(dataSelect3)
+
+```
+
+
+```{r}
+GoldbergCallie2 <-
+  within(Goldberg_callie, {
+  sexor<- factor(sexor)
+  race<- factor(w14CBCLrace_1)
+})
+GoldbergCallie2<- select(GoldbergCallie2, sexor,race)
+  
+
+summary(GoldbergCallie2)
+
+```
+
+```{r}
+
+NewDataSelect<- Goldberg_callie%>%
+  select(contains("race"))
+
+NewDataSelect<- Goldberg_callie%>%
+  filter(!is.na(w16chrace_1))
+
+
+View(NewDataSelect)
+
+
+````
