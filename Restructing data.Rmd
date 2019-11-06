@@ -37,19 +37,34 @@ attributes(Goldberg_callie$w16activ3_2)
 ```
 
 
+```{r}
+ # ggplot(Goldberg_callie, aes(x=sexor))+
+ # #   geom_bar()+
+ #  labs(main="Number of Lesbian, Gay, and Heterosexual Couples")
+
+  #scale_x_discrete(limits=c("Same-Sex","Heterosexual"))+
+
+barplot(Goldberg_callie, main="Number of Lesbian, Gay, and Heterosexual Couples", xlab= "Sexual Orientation",ylab="Number of Couples")
+
+
+```
+
+
 # Suggested Variable Select
 ```{r}
 dataSelect<- Goldberg_callie%>%
-  select(famid, sexor, gender_1, gender_2,  contains("gender"), contains("w16toys"), contains("14hht"), contains("14chcare"),w14CBCLrace_1,w14CBCLrace_2,  contains("w12Gay"), contains("edu"), w11FamInc_1,  contains("activ16"), contains("LGBTCI"), contains("w14CBCLrace_1"))
+  select(famid, sexor, gender_1, gender_2,  contains("gender"), contains("w16toys"), contains("14hht"), contains("14chcare"),w14CBCLrace_1,w14CBCLrace_2,  contains("w12Gay"), contains("edu"), w11FamInc_1,  contains("activ16"), contains("LGBTCI"), contains("w14CBCLrace_1"),contains("16HHT"),contains("16activ"))
 
 
 ```
 
 
 ```{r}
-GoldbergCallieFiltered<- dataSelect2%>% 
-  filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2))
+GoldbergCallieFiltered<- Goldberg_callie%>% 
+  filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2) , !is.na(w16toys5_2), !is.na(w14HHT1_1), !is.na(w14HHT2_1) , !is.na(w14HHT3_1), !is.na(w14HHT4_2),!is.na(w14HHT5_1),!is.na(w14HHT6_1), !is.na(w14HHT7_1), !is.na(w14HHT8_1), !is.na(w14HHT9_1), !is.na(w14HHT10_1), !is.na(w14HHT11_1), !is.na(w14HHT12_1),!is.na(w14HHT13_1),!is.na(w14HHT1_2), !is.na(w14HHT3_2), !is.na(w14HHT4_2), !is.na(w14HHT5_2),!is.na(w14HHT6_2),!is.na(w14HHT7_2), !is.na(w14HHT8_2), !is.na(w14HHT9_2), !is.na(w14HHT10_2), !is.na(w14HHT11_2), !is.na(w14HHT12_2), !is.na(w14HHT13_2),
+         !is.na(w16HHT1_1), !is.na(w16HHT2_1) , !is.na(w16HHT3_1), !is.na(w16HHT4_2),!is.na(w16HHT5_1),!is.na(w16HHT6_1), !is.na(w16HHT7_1), !is.na(w16HHT8_1), !is.na(w16HHT9_1), !is.na(w16HHT10_1), !is.na(w16HHT11_1), !is.na(w16HHT12_1),!is.na(w16HHT13_1),!is.na(w16HHT1_2), !is.na(w16HHT3_2), !is.na(w16HHT4_2), !is.na(w16HHT5_2),!is.na(w16HHT6_2),!is.na(w16HHT7_2), !is.na(w16HHT8_2), !is.na(w16HHT9_2), !is.na(w16HHT10_2), !is.na(w16HHT11_2), !is.na(w16HHT12_2), !is.na(w16HHT13_2), !is.na(w16activ1_1),!is.na(w16activ2_1),!is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1))
 
+summary(Goldberg_callie)
 ```
 
 
@@ -90,17 +105,157 @@ hetero_gb<- Goldberg_callie%>%
 
 ```
 
+
+
+
+
+```{r}
+# Demagraphics on 'child's Race
+attributes(GoldbergCallieFiltered$w14CBCLrace_1)
+
+count(GoldbergCallieFiltered, var="w14CBCLrace_1")
+
+```
+
+
+```{r}
+ggplot(Goldberg_callie, aes(x=w14CBCLrace_1))+
+  geom_histogram()
+
+
+```
+
+
+In our data set we have 
+```{r}
+
+#  Demagraphics on Family Income
+attributes(GoldbergCallieFiltered$w11FamInc_1)
+summary(GoldbergCallieFiltered$w11FamInc_1 )
+
+```
+
+The study had a wide range of family income distribution. With a median of $118,250 earned by a family per year.
+
+```{r}
+ggplot(Goldberg_callie, aes(x=w11FamInc_1))+
+  geom_histogram()+
+  labs(y="Number of Families", x="Household Income")
+
+
+```
+
+
+
+
+```{r}
+
+#Eucation
+attributes(GoldbergCallieFiltered$w11Educ_1)
+attributes(GoldbergCallieFiltered$w11Educ_2)
+
+count(GoldbergCallieFiltered, var="w11Educ_1")
+count(GoldbergCallieFiltered, var="w11Educ_2")
+
+
+```
+For distribution of eduction it was found that 44 particpants had less than high school for education, 30 had a high school diploma or higher.
+
+```{r}
+CollegePlus_1<- GoldbergCallieFiltered%>%
+  filter(w11Educ_1!=1,w11Educ_1!=2)
+
+CollegePlus_2<- GoldbergCallieFiltered%>%
+  filter(w11Educ_2!=1,w11Educ_2!=2)
+
+```
+
+
+```{r}
+count(Goldberg_callie,var="CollegePlus_1" )
+count(Goldberg_callie,var="CollegePlus_2" )
+
+```
+
+* Coincidental?
+
+```{r}
+
+
+```
+
+
 ```{r}
 # Race
+<<<<<<< HEAD
+attributes(GoldbergCallieFiltered$w11Race_2)
+attributes(GoldbergCallieFiltered$w14CBCLrace_1)
+
+count(Goldberg_callie, var="w11Race_2")
+count(Goldberg_callie, var="w14CBCLrace_1")
+
+
+# Income
+attributes(Goldberg_callie$w11FamInc_1)
+summary(GoldbergCallieFiltered$w11FamInc_1 )
+
+#Eucation
+attributes(GoldbergCallieFiltered$w11Educ_1)
+attributes(GoldbergCallieFiltered$w11Educ_2)
+
+count(GoldbergCallieFiltered, var="w11Educ_1")
+count(GoldbergCallieFiltered, var="w11Educ_2")
+=======
 attributes(Goldberg_callie$w11Race_2)
 attributes(Goldberg_callie$w14CBCLrace_1)
 # Income
 #Education
+>>>>>>> 14feebc0bc6c1f3edf3b7a597c427b5bc3c78181
+
+```
+
+
+<<<<<<< HEAD
+Goldberg_callieViewable2<- Goldberg_callie2%>%
+  select(w11FamInc)
+View(Goldberg_callie2)
+
+
+
+```
+
+
+For the study, our sample size includes 
+```{r}
+attributes(Goldberg_callie2$w11FamInc)
+attributes(Goldberg_callie$w11FamInc_1)
+count(Goldberg_callie2, var="w11FamInc")
+count(Goldberg_callie, var="w11FamInc_1")
+#ggplot(Goldberg_callie2, aes(x= w11FamInc))+geom_histogram()
+
+summary(Goldberg_callie2$w11FamInc)
+=======
+```{r}
+
+>>>>>>> 14feebc0bc6c1f3edf3b7a597c427b5bc3c78181
+
+```
+
+
+
+
+```{r}
+FamIncome<- GoldbergCallieFiltered%>%
+  filter(w11FamInc)
+count(Goldberg_callie2, var="w11FamInc")
+
 
 ```
 
 
 ```{r}
+Test<- Goldberg_callie%>%
+  filter(w11FamInc==)
 
 
 ```
@@ -119,15 +274,7 @@ attributes(Goldberg_callie$w14CBCLrace_1)
 
 
 
-
-
-
-
-
-
-
-
-
+The study included data from 223 families that made $100,000 or more while 
 
 
 

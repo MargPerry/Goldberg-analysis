@@ -88,3 +88,65 @@ names(select(Goldberg_callie, !contains("w14")))
 
 
 ```
+
+
+```{r}
+# Page
+
+```
+```{r}
+### LGBTCI, page 46
+### Internalized Homophobia page 23
+# w12Gay
+
+
+
+---
+
+
+# Race
+
+# Income
+#Eucation
+# Social Support Variables Demagrpahics
+# Family Percieved Support- w11family
+# Perceieved Support friends w11friend
+
+```
+
+
+```{r}
+names(select(Goldberg_callie, contains("race")))
+
+```
+
+
+
+
+
+# Wrong wave
+```{r}
+names(select(Goldberg_callie, contains("gay")))
+```
+
+
+```{r}
+names(select(Goldberg_callie, contains("gender")))
+
+```
+
+Tells us if couple is same sex or heterosexual
+```{r}
+names(select(Goldberg_callie, contains("sexor")))
+
+```
+
+```{r}
+names(select(Goldberg_callie, contains("inc")))
+
+```
+
+```{r}
+names(select(Goldberg_callie, contains("edu")))
+
+```
