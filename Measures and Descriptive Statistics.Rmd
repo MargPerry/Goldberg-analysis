@@ -1,0 +1,79 @@
+---
+title: "Measures and Descriptive Statistics"
+output: pdf_document
+---
+
+title             : "PSY/SDS 364: Measures and Descriptive Statistics"
+shorttitle        : "Measures and Descriptive Statistics"
+
+author: 
+  - name          : "Margret Perry"
+    affiliation   : "1"
+  - name          : "Callie Selvin"
+    affliation    : "2"
+  - name          : "Isabel Zamudio-Moore"
+    affliation    : "3"
+  
+    corresponding : yes    # Define only one corresponding author
+    address       : "Northampton, MA"
+    email         : "meperry@smith.edu | cslevin@smith.edu | izamudiomoore@smith.edu"
+
+affiliation:
+  - id            : "1"
+    institution   : "Smith College"
+
+author_note: >
+  Smith College
+  
+keywords          : "Division of Labor”, Gender Role Development”, “Preschool Activities Inventory", “Gendered Type Play”
+wordcount         : "X"
+
+bibliography      : ["references.bib","r-references.bib"]
+
+figsintext        : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : no
+
+lang              : "english"
+class             : "man"
+output            : papaja::apa6_pdf
+---
+
+
+
+```{r include = FALSE}
+library(papaja)
+#install.packages("psych")
+#install.packages("plyr")
+library(psysds364data)
+library(psych)
+library(devtools)
+library(tidyr)
+library(mosaic)
+library(dplyr)
+library(ggplot2)
+library(plyr)
+```
+
+``` {r create_r-references}
+r_refs(file = "r-references.bib")
+my_citation <- cite_r(file = "r-references.bib")
+
+```
+
+
+
+
+
+
+
+
+\newpage
+
+# References
+
+
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}

@@ -25,11 +25,11 @@ data("Goldberg_callie")
 
 ##sample code referance
 attributes(Goldberg_callie$w16activ4_2)
-names(select(Goldberg_callie, contains("sex")))
+#names(select(Goldberg_callie, contains("sex")))
 ?Goldberg
 attributes(Goldberg_callie$w16ra)
 cortest<-corr.test(select(Goldberg_callie, w16activ1_2, w16activ2_2, w16activ3_2,w16activ4_2, w16activ5_2, w16activ6_2, w16activ7_2, w16activ8_2,w16activ9_2, w16activ10_2, w16activ11_2))$r
-names(select(Goldberg_callie, contains("gender")))
+#names(select(Goldberg_callie, contains("gender")))
 
 attributes(Goldberg_callie$w16activ10_2)
 attributes(Goldberg_callie$w16activ3_2)
@@ -38,14 +38,10 @@ attributes(Goldberg_callie$w16activ3_2)
 
 
 ```{r}
- # ggplot(Goldberg_callie, aes(x=sexor))+
- # #   geom_bar()+
- #  labs(main="Number of Lesbian, Gay, and Heterosexual Couples")
-
-  #scale_x_discrete(limits=c("Same-Sex","Heterosexual"))+
-
-barplot(Goldberg_callie, main="Number of Lesbian, Gay, and Heterosexual Couples", xlab= "Sexual Orientation",ylab="Number of Couples")
-
+ ggplot(Goldberg_callie, aes(x=sexor))+
+    geom_bar()+
+   labs(main="Number of Lesbian, Gay, and Heterosexual Couples", x= "Sexual Orientation", y= "Number Of Couples")+
+scale_x_discrete(limits=c("Same-Sex","Heterosexual"))
 
 ```
 
@@ -62,13 +58,19 @@ dataSelect<- Goldberg_callie%>%
 ```{r}
 GoldbergCallieFiltered<- Goldberg_callie%>% 
   filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2) , !is.na(w16toys5_2), !is.na(w14HHT1_1), !is.na(w14HHT2_1) , !is.na(w14HHT3_1), !is.na(w14HHT4_2),!is.na(w14HHT5_1),!is.na(w14HHT6_1), !is.na(w14HHT7_1), !is.na(w14HHT8_1), !is.na(w14HHT9_1), !is.na(w14HHT10_1), !is.na(w14HHT11_1), !is.na(w14HHT12_1),!is.na(w14HHT13_1),!is.na(w14HHT1_2), !is.na(w14HHT3_2), !is.na(w14HHT4_2), !is.na(w14HHT5_2),!is.na(w14HHT6_2),!is.na(w14HHT7_2), !is.na(w14HHT8_2), !is.na(w14HHT9_2), !is.na(w14HHT10_2), !is.na(w14HHT11_2), !is.na(w14HHT12_2), !is.na(w14HHT13_2),
-         !is.na(w16HHT1_1), !is.na(w16HHT2_1) , !is.na(w16HHT3_1), !is.na(w16HHT4_2),!is.na(w16HHT5_1),!is.na(w16HHT6_1), !is.na(w16HHT7_1), !is.na(w16HHT8_1), !is.na(w16HHT9_1), !is.na(w16HHT10_1), !is.na(w16HHT11_1), !is.na(w16HHT12_1),!is.na(w16HHT13_1),!is.na(w16HHT1_2), !is.na(w16HHT3_2), !is.na(w16HHT4_2), !is.na(w16HHT5_2),!is.na(w16HHT6_2),!is.na(w16HHT7_2), !is.na(w16HHT8_2), !is.na(w16HHT9_2), !is.na(w16HHT10_2), !is.na(w16HHT11_2), !is.na(w16HHT12_2), !is.na(w16HHT13_2), !is.na(w16activ1_1),!is.na(w16activ2_1),!is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1))
+   !is.na(w16activ1_1),!is.na(w16activ2_1),!is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1),!is.na(w16activ10_1), !is.na(w16activ11_1),
+   !is.na(w16activ1_2),!is.na(w16activ2_1), !is.na(w16activ3_2),!is.na(w16activ4_2), !is.na(w16activ5_2),!is.na(w16activ6_2), !is.na(w16activ7_2),!is.na(w16activ8_2), !is.na(w16activ9_2), 
+   !is.na(w16charac1_1), !is.na(w16charac2_1), !is.na(w16charac3_1),!is.na(w16charac4_1), !is.na(w16charac5_1), !is.na(w16charac6_1), !is.na(w16charac1_2), !is.na(w16charac2_2),!is.na(w16charac3_2),!is.na(w16charac4_2),!is.na(w16charac5_2), !is.na(w16charac6_2)
+   )
 
-summary(Goldberg_callie)
+
 ```
 
 
+```{r}
 
+ParCount<- NROW(GoldbergCallieFiltered)
+```
 #Get Demagraphics for 
 
 ```{r}
@@ -119,11 +121,11 @@ count(GoldbergCallieFiltered, var="w14CBCLrace_1")
 
 
 ```{r}
-ggplot(Goldberg_callie, aes(x=w14CBCLrace_1))+
-  geom_histogram()
-
+library(expss)
 
 ```
+
+
 
 
 In our data set we have 
@@ -149,7 +151,6 @@ ggplot(Goldberg_callie, aes(x=w11FamInc_1))+
 
 
 ```{r}
-
 #Eucation
 attributes(GoldbergCallieFiltered$w11Educ_1)
 attributes(GoldbergCallieFiltered$w11Educ_2)
@@ -187,7 +188,6 @@ count(Goldberg_callie,var="CollegePlus_2" )
 
 ```{r}
 # Race
-<<<<<<< HEAD
 attributes(GoldbergCallieFiltered$w11Race_2)
 attributes(GoldbergCallieFiltered$w14CBCLrace_1)
 
@@ -205,22 +205,16 @@ attributes(GoldbergCallieFiltered$w11Educ_2)
 
 count(GoldbergCallieFiltered, var="w11Educ_1")
 count(GoldbergCallieFiltered, var="w11Educ_2")
-=======
 attributes(Goldberg_callie$w11Race_2)
 attributes(Goldberg_callie$w14CBCLrace_1)
-# Income
-#Education
->>>>>>> 14feebc0bc6c1f3edf3b7a597c427b5bc3c78181
 
 ```
 
 
-<<<<<<< HEAD
+```{r}
 Goldberg_callieViewable2<- Goldberg_callie2%>%
   select(w11FamInc)
 View(Goldberg_callie2)
-
-
 
 ```
 
@@ -234,18 +228,11 @@ count(Goldberg_callie, var="w11FamInc_1")
 #ggplot(Goldberg_callie2, aes(x= w11FamInc))+geom_histogram()
 
 summary(Goldberg_callie2$w11FamInc)
-=======
-```{r}
-
->>>>>>> 14feebc0bc6c1f3edf3b7a597c427b5bc3c78181
-
 ```
 
 
-
-
 ```{r}
-FamIncome<- GoldbergCallieFiltered%>%
+FamIncome<- Goldberg_callie%>%
   filter(w11FamInc)
 count(Goldberg_callie2, var="w11FamInc")
 
@@ -254,25 +241,30 @@ count(Goldberg_callie2, var="w11FamInc")
 
 
 ```{r}
-Test<- Goldberg_callie%>%
-  filter(w11FamInc==)
+FamInc<- Goldberg_callie%>%
+  mutate(ww11FamInc=as.integer(w11FamInc_1))%>%
+mutate( w11FamInc= ifelse(w11FamInc_1 %in% 0:20000, "20k or less", ifelse(w11FamInc_1 %in% 20001:40000, "20k-40k", ifelse(w11FamInc_1 %in% 40001:60000, "40k-60k", ifelse(w11FamInc_1 %in% 60001:80000, "60k-80k", ifelse(w11FamInc_1 %in% 80001:100000, "80k-100k", ifelse(w11FamInc_1 %in% 100001:730000, "10000k+", "NA" )))))))
+
+w11FamInc<- Goldberg_callie2%>%
+  select(w11FamInc)
+View(w11FamInc)
 
 
 ```
 
 
 
+#Create a dataframe for Goldberge Callie
 
 
 
+```{r}
+FamIncome= apply_labels(w11FamInc, w11FamInc= "Family Income")
 
+```
+cro(w11FamInc$w11FamInc,list(total()))
 
-
-
-
-
-
-
+```
 
 The study included data from 223 families that made $100,000 or more while 
 
