@@ -346,10 +346,7 @@ ParCount
 ```
 
 ```{r}
-library(dplyr)
-library(psych)
-library(psy)
-library(psysds364data)
+
 
 goldberg_psai<- Goldberg_callie %>%
   select(w16activ1_1, w16activ2_1, w16activ3_1,w16activ4_1, w16activ5_1, w16activ6_1, w16activ7_1, w16activ8_1,w16activ9_1, w16activ10_1, w16activ11_1, w16toys1_1, w16toys2_1, w16toys3_1, w16toys4_1, w16toys5_1, w16toys6_1, w16toys7_1, w16charac1_1, w16charac2_1, w16charac3_1, w16charac4_1, w16charac5_1, w16charac6_1) %>%
@@ -362,7 +359,7 @@ psai_alpha <- goldberg_psai %>%
 psai_alpha_0 <- psai_alpha %>%
   mutate(pai= round((w16rt2+ w16rt4+ w16rt7 + w16ra1 + w16ra2 + w16ra3 + w16ra6 + w16ra9 + w16ra11 + w16rc4 + w16rc5 + w16rc6 + w16charac1_1+ w16charac2_1+ w16charac3_1+ w16toys1_1+ w16toys3_1 + w16toys5_1+ w16toys6_1+ w16activ4_1+ w16activ5_1+ w16activ7_1+ w16activ8_1+ w16activ10_1) /23))
 
-cronbach(psai_alpha)
+#cronbach(psai_alpha)
 
 
 goldberg_hw<- GoldbergCallieFiltered%>%
@@ -374,4 +371,23 @@ cronbach(goldberg_hw)
 ```
 
 
+```{r} 
+  GoldbergCallieFiltered_HT$w14HHT4_1 <- 
+  ifelse(GoldbergCallieFiltered$w14HHT4_1==1, 1,
+ifelse(GoldbergCallieFiltered$w14HHT4_1==2,2,
+ifelse(GoldbergCallieFiltered$w14HHT4_1==3,3,
+ifelse(GoldbergCallieFiltered$w14HHT4_1==4,4,
+ifelse(GoldbergCallieFiltered$w14HHT4_1==5,5, 88)))))
+summary(GoldbergCallieFiltered_HT$w14HHT4_1)
 
+GoldbergCallieFiltered_HT$w14HHT4_2 <- 
+ifelse(GoldbergCallieFiltered$w14HHT4_2==1, 1,
+ifelse(GoldbergCallieFiltered$w14HHT4_2==2,2,
+ifelse(GoldbergCallieFiltered$w14HHT4_2==3,3,
+ifelse(GoldbergCallieFiltered$w14HHT4_2==4,4,
+ifelse(GoldbergCallieFiltered$w14HHT4_2==5,5, 88)))))
+  
+summary(GoldbergCallieFiltered_HT$w14HHT4_2)
+
+
+```
