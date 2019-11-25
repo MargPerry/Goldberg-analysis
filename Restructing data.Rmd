@@ -386,29 +386,35 @@ GoldbergCallieFiltered<- Goldberg_callie%>%
 
 ```
 
+
+```{r}
+GoldbergCallieFiltered_CH<-GoldbergCallieFiltered
+
+```
+
 ```{r} 
-  GoldbergCallieFiltered_HT$w14chcare1_1 <- 
+  GoldbergCallieFiltered_CH$w14chcare1_1 <- 
   ifelse(GoldbergCallieFiltered$w14chcare1_1==1, 1,
 ifelse(GoldbergCallieFiltered$w14chcare1_1==2,2,
 ifelse(GoldbergCallieFiltered$w14chcare1_1==3,3,
 ifelse(GoldbergCallieFiltered$w14chcare1_1==4,4,
 ifelse(GoldbergCallieFiltered$w14chcare1_1==5,5, 88)))))
-summary(GoldbergCallieFiltered_HT$w14chcare1_1)
+summary(GoldbergCallieFiltered_CH$w14chcare1_1)
 
-GoldbergCallieFiltered_HT$w14chcare2_2 <- 
+GoldbergCallieFiltered_CH$w14chcare2_2 <- 
 ifelse(GoldbergCallieFiltered$w14chcare1_2==1, 1,
 ifelse(GoldbergCallieFiltered$w14chcare1_2==2,2,
 ifelse(GoldbergCallieFiltered$w14chcare1_2==3,3,
 ifelse(GoldbergCallieFiltered$w14chcare1_2==4,4,
 ifelse(GoldbergCallieFiltered$w14chcare1_2==5,5, 88)))))
   
-summary(GoldbergCallieFiltered_HT$w14chcare2_2)
+summary(GoldbergCallieFiltered_CH$w14chcare2_2)
 
 
 ```
 
 ```{r} 
-  GoldbergCallieFiltered_HT$w14chcare2_1 <- 
+  GoldbergCallieFiltered_CH$w14chcare2_1 <- 
   ifelse(GoldbergCallieFiltered$w14chcare2_1==1, 1,
 ifelse(GoldbergCallieFiltered$w14chcare2_1==2,2,
 ifelse(GoldbergCallieFiltered$w14chcare2_1==3,3,
@@ -649,3 +655,104 @@ summary(GoldbergCallieFiltered_HT$w14chcare10_2)
 
 ```
 
+```{r} 
+GoldbergCallieFiltered_HT$w14chcare11_1 <- 
+ifelse(GoldbergCallieFiltered$w14chcare11_1==1, 1,
+ifelse(GoldbergCallieFiltered$w14chcare11_1==2,2,
+ifelse(GoldbergCallieFiltered$w14chcare11_1==3,3,
+ifelse(GoldbergCallieFiltered$w14chcare11_1==4,4,
+ifelse(GoldbergCallieFiltered$w14chcare11_1==5,5, 88)))))
+summary(GoldbergCallieFiltered_HT$w14chcare11_1)
+
+GoldbergCallieFiltered_HT$w14chcare11_2 <- 
+ifelse(GoldbergCallieFiltered$w14chcare11_2==1, 1,
+ifelse(GoldbergCallieFiltered$w14chcare11_2==2,2,
+ifelse(GoldbergCallieFiltered$w14chcare11_2==3,3,
+ifelse(GoldbergCallieFiltered$w14chcare11_2==4,4,
+ifelse(GoldbergCallieFiltered$w14chcare11_2==5,5, 88)))))
+  
+summary(GoldbergCallieFiltered_HT$w14chcare11_2)
+
+```
+
+```{r} 
+GoldbergCallieFiltered_HT$w14chcare12_1 <- 
+ifelse(GoldbergCallieFiltered$w14chcare12_1==1, 1,
+ifelse(GoldbergCallieFiltered$w14chcare12_1==2,2,
+ifelse(GoldbergCallieFiltered$w14chcare12_1==3,3,
+ifelse(GoldbergCallieFiltered$w14chcare12_1==4,4,
+ifelse(GoldbergCallieFiltered$w14chcare12_1==5,5, 88)))))
+summary(GoldbergCallieFiltered_HT$w14chcare12_1)
+
+GoldbergCallieFiltered_HT$w14chcare12_2 <- 
+ifelse(GoldbergCallieFiltered$w14chcare12_2==1, 1,
+ifelse(GoldbergCallieFiltered$w14chcare12_2==2,2,
+ifelse(GoldbergCallieFiltered$w14chcare12_2==3,3,
+ifelse(GoldbergCallieFiltered$w14chcare12_2==4,4,
+ifelse(GoldbergCallieFiltered$w14chcare12_2==5,5, 88)))))
+  
+summary(GoldbergCallieFiltered_HT$w14chcare12_2)
+
+```
+
+```{r} 
+GoldbergCallieFiltered_HT$w14chcare13_1 <- 
+ifelse(GoldbergCallieFiltered$w14chcare13_1==1, 1,
+ifelse(GoldbergCallieFiltered$w14chcare13_1==2,2,
+ifelse(GoldbergCallieFiltered$w14chcare13_1==3,3,
+ifelse(GoldbergCallieFiltered$w14chcare13_1==4,4,
+ifelse(GoldbergCallieFiltered$w14chcare13_1==5,5, 88)))))
+summary(GoldbergCallieFiltered_HT$w14chcare13_1)
+
+GoldbergCallieFiltered_HT$w14chcare13_2 <- 
+ifelse(GoldbergCallieFiltered$w14chcare13_2==1, 1,
+ifelse(GoldbergCallieFiltered$w14chcare13_2==2,2,
+ifelse(GoldbergCallieFiltered$w14chcare13_2==3,3,
+ifelse(GoldbergCallieFiltered$w14chcare13_2==4,4,
+ifelse(GoldbergCallieFiltered$w14chcare13_2==5,5, 88)))))
+  
+summary(GoldbergCallieFiltered_HT$w14chcare13_2)
+
+```
+
+
+```{r} 
+GoldbergCallieFiltered_HT$w14chcare14_1 <- 
+ifelse(GoldbergCallieFiltered$w14chcare14_1==1, 1,
+ifelse(GoldbergCallieFiltered$w14chcare14_1==2,2,
+ifelse(GoldbergCallieFiltered$w14chcare14_1==3,3,
+ifelse(GoldbergCallieFiltered$w14chcare14_1==4,4,
+ifelse(GoldbergCallieFiltered$w14chcare14_1==5,5, 88)))))
+summary(GoldbergCallieFiltered_HT$w14chcare14_1)
+
+GoldbergCallieFiltered_HT$w14chcare14_2 <- 
+ifelse(GoldbergCallieFiltered$w14chcare14_2==1, 1,
+ifelse(GoldbergCallieFiltered$w14chcare14_2==2,2,
+ifelse(GoldbergCallieFiltered$w14chcare14_2==3,3,
+ifelse(GoldbergCallieFiltered$w14chcare14_2==4,4,
+ifelse(GoldbergCallieFiltered$w14chcare14_2==5,5, 88)))))
+  
+summary(GoldbergCallieFiltered_HT$w14chcare14_2)
+
+```
+
+
+```{r} 
+GoldbergCallieFiltered_HT$w14chcare15_1 <- 
+ifelse(GoldbergCallieFiltered$w14chcare15_1==1, 1,
+ifelse(GoldbergCallieFiltered$w14chcare15_1==2,2,
+ifelse(GoldbergCallieFiltered$w14chcare15_1==3,3,
+ifelse(GoldbergCallieFiltered$w14chcare15_1==4,4,
+ifelse(GoldbergCallieFiltered$w14chcare15_1==5,5, 88)))))
+summary(GoldbergCallieFiltered_HT$w14chcare15_1)
+
+GoldbergCallieFiltered_HT$w14chcare15_2 <- 
+ifelse(GoldbergCallieFiltered$w14chcare15_2==1, 1,
+ifelse(GoldbergCallieFiltered$w14chcare15_2==2,2,
+ifelse(GoldbergCallieFiltered$w14chcare15_2==3,3,
+ifelse(GoldbergCallieFiltered$w14chcare15_2==4,4,
+ifelse(GoldbergCallieFiltered$w14chcare15_2==5,5, 88)))))
+  
+summary(GoldbergCallieFiltered_HT$w14chcare15_2)
+
+```
