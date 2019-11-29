@@ -27,13 +27,23 @@ data("Goldberg_callie")
 attributes(Goldberg_callie$w16activ4_2)
 names(select(Goldberg_callie, contains("age")))
 ?Goldberg
-attributes(Goldberg_callie$w16ra)
+attributes(Goldberg_callie$w14HHT10_1)
 cortest<-corr.test(select(Goldberg_callie, w16activ1_2, w16activ2_2, w16activ3_2,w16activ4_2, w16activ5_2, w16activ6_2, w16activ7_2, w16activ8_2,w16activ9_2, w16activ10_2, w16activ11_2))$r
-names(select(Goldberg_callie, contains("gender")))
+#names(select(Goldberg_callie, contains("gender")))
 
 attributes(Goldberg_callie$w16activ10_2)
 attributes(Goldberg_callie$w16activ3_2)
+
 ?Goldberg
+
+```
+
+
+```{r}
+ ggplot(Goldberg_callie, aes(x=sexor))+
+    geom_bar()+
+   labs(main="Number of Lesbian, Gay, and Heterosexual Couples", x= "Sexual Orientation", y= "Number Of Couples")+
+scale_x_discrete(limits=c("Same-Sex","Heterosexual"))
 ```
 
 
@@ -50,10 +60,29 @@ dataSelect<- Goldberg_callie%>%
 GoldbergCallieFiltered<- dataSelect2%>% 
   filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2))
 
+  
+  
+  
+  
+GoldbergCallieFiltered<- Goldberg_callie%>% 
+  filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2) , !is.na(w16toys5_2), !is.na(w14HHT1_1), !is.na(w14HHT2_1) , !is.na(w14HHT3_1), !is.na(w14HHT4_2),!is.na(w14HHT5_1),!is.na(w14HHT6_1), !is.na(w14HHT7_1), !is.na(w14HHT8_1), !is.na(w14HHT9_1), !is.na(w14HHT10_1), !is.na(w14HHT11_1), !is.na(w14HHT12_1),!is.na(w14HHT13_1),!is.na(w14HHT1_2), !is.na(w14HHT3_2), !is.na(w14HHT4_2), !is.na(w14HHT5_2),!is.na(w14HHT6_2),!is.na(w14HHT7_2), !is.na(w14HHT8_2), !is.na(w14HHT9_2), !is.na(w14HHT10_2), !is.na(w14HHT11_2), !is.na(w14HHT12_2), !is.na(w14HHT13_2),
+   !is.na(w16activ1_1),!is.na(w16activ2_1),!is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1),!is.na(w16activ10_1), !is.na(w16activ11_1),
+   !is.na(w16activ1_2),!is.na(w16activ2_1), !is.na(w16activ3_2),!is.na(w16activ4_2), !is.na(w16activ5_2),!is.na(w16activ6_2), !is.na(w16activ7_2),!is.na(w16activ8_2), !is.na(w16activ9_2), 
+   !is.na(w16charac1_1), !is.na(w16charac2_1), !is.na(w16charac3_1),!is.na(w16charac4_1), !is.na(w16charac5_1), !is.na(w16charac6_1), !is.na(w16charac1_2), !is.na(w16charac2_2),!is.na(w16charac3_2),!is.na(w16charac4_2),!is.na(w16charac5_2), !is.na(w16charac6_2)
+   )
+
+  filter(!is.na(famid), !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2) , !is.na(w16toys5_2), !is.na(w16activ1_1),!is.na(w16activ2_1),!is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1))
+
+GoldbergCallieFiltered_1<- Goldberg_callie%>% 
+  filter(!is.na(famid), !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2) , !is.na(w16toys5_2), !is.na(w16activ1_1),!is.na(w16activ2_1),!is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1), !is.na(w14HHT1_1), !is.na(w14HHT2_1), !is.na(w14HHT3_1),!is.na(w14HHT4_1), !is.na(w14HHT5_1), !is.na(w14HHT6_1), !is.na(w14HHT7_1), !is.na(w14HHT8_1),!is.na(w14HHT9_1), !is.na(w14HHT10_1),!is.na(w14HHT11_1), !is.na(w14HHT12_1), !is.na(w14HHT13_1))
+
 ```
 
 
+```{r}
 
+ParCount<- NROW(GoldbergCallieFiltered)
+```
 #Get Demagraphics for 
 
 ```{r}
@@ -66,7 +95,7 @@ attributes(Goldberg_callie$w14chgender_2)
 attributes(Goldberg_callie$w14Religion_1)
 
 attributes(Goldberg_callie$sexor)
-attributes(Goldberg_callie$w14AdSex_1)
+attributes(Goldberg_callie$w14CBCLage_1)
 attributes(Goldberg_callie$w14AdSex_2)
 
 ##The occurances of demographic varibles
@@ -74,14 +103,16 @@ head(Goldberg_callie)
 count(Goldberg_callie, vars= "w14Religion_1")
 count(Goldberg_callie, vars= "sexor")
 count(Goldberg_callie, vars= "gender_1")
-count(Goldberg_callie, vars= "w14AdSex_1")
 count(Goldberg_callie, vars= "w14CBCLgender_1") 
+count(GoldbergCallieFiltered, vars= "w14CBCLgender_1") 
 
 
 ### same freq as w14CBCLgender_2 and quest: there is no documentation for what 3,5, and 22 mean
+names(Goldberg, select(contains("age")))
 
+count(hetero_gb, vars = "famid")
 #sexor based datasets
-samesex_gb<- Goldberg_callie%>%
+samesex_gb<- GoldbergCallieFiltered%>%
   filter(sexor == 1)
 
 count(samesex_gb, vars= "w14Religion_1")
@@ -108,9 +139,116 @@ attributes(Goldberg_callie$w11Race_2)
 attributes(Goldberg_callie$w14CBCLrace_1)
 # Income
 #Education
+count(samesex_gb, vars= "w14CBCLage_1")
+is.numeric(samesex_gb$w14CBCLage_1)
+ssavg_chage<- mean(samesex_gb$w14CBCLage_1, na.rm= TRUE)
+
+hetero_gb<- GoldbergCallieFiltered%>%
+  filter(sexor == -1)
+
+count(hetero_gb, vars= "w14Religion_1")
+count(hetero_gb, vars= "sexor")
+count(hetero_gb, vars= "gender_1")
+count(hetero_gb, vars= "w14AdSex_1")
+count(hetero_gb, vars= "w14CBCLgender_1") 
+count(hetero_gb, vars= "w14CBCLage_1")
+havg_chage<- mean(hetero_gb$w14CBCLage_1, na.rm= TRUE)
+```
+
+
+```{r}
+library(papaja)
+install.packages("apaTables")
+library(apaTables)
+install.packages("beeswarm")
+library(beeswarm)
+
+# DOES NOT WORK
+# apa_table(GoldbergCallieFiltered, aglin = c("Family Income", "Parent Education", "Parent Race", "Girls (%, n)", "Boys (%, n)", "Average Age of Child in Years"), col_spanners = list( c("Homosexual couples" = c(1,2), "Heterosexual Couples" = 3)))
+
+apa_beeplot(
+  data = GoldbergCallieFiltered,
+  id = "famid",
+  dv= "w14CBCLage_1",
+  factors = "sexor"
+)
+
+apa_beeplot(
+  data = GoldbergCallieFiltered,
+  id = "famid",
+  dv= "w11FamInc_1",
+  factors = "sexor"
+)
+
 
 ```
 
+
+
+```{r}
+# Demagraphics on 'child's Race
+attributes(GoldbergCallieFiltered$w14CBCLrace_1)
+
+count(GoldbergCallieFiltered, var="w14CBCLrace_1")
+
+```
+
+
+
+
+
+
+In our data set we have 
+```{r}
+
+#  Demagraphics on Family Income
+attributes(GoldbergCallieFiltered$w11FamInc_1)
+summary(GoldbergCallieFiltered$w11FamInc_1 )
+
+```
+
+The study had a wide range of family income distribution. With a median of $118,250 earned by a family per year.
+
+```{r}
+ggplot(Goldberg_callie, aes(x=w11FamInc_1))+
+  geom_histogram()+
+  labs(y="Number of Families", x="Household Income")
+
+
+```
+
+
+
+
+```{r}
+#Eucation
+attributes(GoldbergCallieFiltered$w11Educ_1)
+attributes(GoldbergCallieFiltered$w11Educ_2)
+
+count(GoldbergCallieFiltered, var="w11Educ_1")
+count(GoldbergCallieFiltered, var="w11Educ_2")
+
+
+```
+For distribution of eduction it was found that 44 particpants had less than high school for education, 30 had a high school diploma or higher.
+
+```{r}
+CollegePlus_1<- GoldbergCallieFiltered%>%
+  filter(w11Educ_1!=1,w11Educ_1!=2)
+
+CollegePlus_2<- GoldbergCallieFiltered%>%
+  filter(w11Educ_2!=1,w11Educ_2!=2)
+
+```
+
+
+```{r}
+count(Goldberg_callie,var="CollegePlus_1" )
+count(Goldberg_callie,var="CollegePlus_2" )
+
+```
+
+* Coincidental?
 
 ```{r}
 
@@ -118,32 +256,146 @@ attributes(Goldberg_callie$w14CBCLrace_1)
 ```
 
 
+```{r}
+# Race
+attributes(GoldbergCallieFiltered$w11Race_2)
+attributes(GoldbergCallieFiltered$w14CBCLrace_1)
+
+count(Goldberg_callie, var="w11Race_2")
+count(Goldberg_callie, var="w14CBCLrace_1")
+
+
+# Income
+attributes(Goldberg_callie$w11FamInc_1)
+summary(GoldbergCallieFiltered$w11FamInc_1 )
+
+#Eucation
+attributes(GoldbergCallieFiltered$w11Educ_1)
+attributes(GoldbergCallieFiltered$w11Educ_2)
+
+count(GoldbergCallieFiltered, var="w11Educ_1")
+count(GoldbergCallieFiltered, var="w11Educ_2")
+attributes(Goldberg_callie$w11Race_2)
+attributes(Goldberg_callie$w14CBCLrace_1)
+
+```
+
+
+```{r}
+
+
+attributes(Goldberg_callie$w11Race_2)
+attributes(Goldberg_callie$w14CBCLrace_1)
+
+Goldberg_callieViewable2<- Goldberg_callie2%>%
+  select(w11FamInc)
+View(Goldberg_callie2)
+
+```
+
+
+For the study, our sample size includes 
+```{r}
+attributes(Goldberg_callie2$w11FamInc)
+attributes(Goldberg_callie$w11FamInc_1)
+count(Goldberg_callie2, var="w11FamInc")
+count(Goldberg_callie, var="w11FamInc_1")
+#ggplot(Goldberg_callie2, aes(x= w11FamInc))+geom_histogram()
+
+summary(Goldberg_callie2$w11FamInc)
+
+```
+
+
+
+```{r}
+FamIncome<- Goldberg_callie%>%
+  filter(w11FamInc)
+count(Goldberg_callie2, var="w11FamInc")
+
+
+```
+
+
+```{r}
+
+FamInc<- Goldberg_callie%>%
+  mutate(ww11FamInc=as.integer(w11FamInc_1))%>%
+mutate( w11FamInc= ifelse(w11FamInc_1 %in% 0:20000, "20k or less", ifelse(w11FamInc_1 %in% 20001:40000, "20k-40k", ifelse(w11FamInc_1 %in% 40001:60000, "40k-60k", ifelse(w11FamInc_1 %in% 60001:80000, "60k-80k", ifelse(w11FamInc_1 %in% 80001:100000, "80k-100k", ifelse(w11FamInc_1 %in% 100001:730000, "10000k+", "NA" )))))))
+
+
+
+```
+```{r}
+w11FamInc<- Goldberg_callie2%>%
+  select(w11FamInc)
+View(w11FamInc)
+```
+
+
+
+#Create a dataframe for Goldberge Callie
+
+
+
+```{r}
+FamIncome= apply_labels(w11FamInc, w11FamInc= "Family Income")
+
+
+cro(w11FamInc$w11FamInc,list(total()))
+
+```
+
+The study included data from 223 families that made $100,000 or more while 
 
 
 
 
+```{r}
+GoldbergCallieFiltered<- Goldberg_callie%>% 
+  filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2) , !is.na(w16toys5_2), !is.na(w14HHT1_1), !is.na(w14HHT2_1) , !is.na(w14HHT3_1), !is.na(w14HHT4_2),!is.na(w14HHT5_1),!is.na(w14HHT6_1), !is.na(w14HHT7_1), !is.na(w14HHT8_1), !is.na(w14HHT9_1), !is.na(w14HHT10_1), !is.na(w14HHT11_1), !is.na(w14HHT12_1),!is.na(w14HHT13_1),!is.na(w14HHT1_2), !is.na(w14HHT3_2), !is.na(w14HHT4_2), !is.na(w14HHT5_2),!is.na(w14HHT6_2),!is.na(w14HHT7_2), !is.na(w14HHT8_2), !is.na(w14HHT9_2), !is.na(w14HHT10_2), !is.na(w14HHT11_2), !is.na(w14HHT12_2), !is.na(w14HHT13_2),
+   !is.na(w16activ1_1),!is.na(w16activ2_1),!is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1),!is.na(w16activ10_1), !is.na(w16activ11_1),
+   !is.na(w16activ1_2),!is.na(w16activ2_1), !is.na(w16activ3_2),!is.na(w16activ4_2), !is.na(w16activ5_2),!is.na(w16activ6_2), !is.na(w16activ7_2),!is.na(w16activ8_2), !is.na(w16activ9_2), 
+   !is.na(w16charac1_1), !is.na(w16charac2_1), !is.na(w16charac3_1),!is.na(w16charac4_1), !is.na(w16charac5_1), !is.na(w16charac6_1), !is.na(w16charac1_2), !is.na(w16charac2_2),!is.na(w16charac3_2),!is.na(w16charac4_2),!is.na(w16charac5_2), !is.na(w16charac6_2)
+   )
 
 
+```
 
 
+```{r}
+
+ParCount<- NROW(GoldbergCallieFiltered)
+ParCount
+```
+
+```{r}
+library(dplyr)
+library(psych)
+library(psy)
+library(psysds364data)
+
+goldberg_psai<- Goldberg_callie %>%
+  select(w16activ1_1, w16activ2_1, w16activ3_1,w16activ4_1, w16activ5_1, w16activ6_1, w16activ7_1, w16activ8_1,w16activ9_1, w16activ10_1, w16activ11_1, w16toys1_1, w16toys2_1, w16toys3_1, w16toys4_1, w16toys5_1, w16toys6_1, w16toys7_1, w16charac1_1, w16charac2_1, w16charac3_1, w16charac4_1, w16charac5_1, w16charac6_1) %>%
+  
+  mutate(w16rt2= 6- w16toys2_1,w16rt4 = 6- w16toys4_1, w16rt7 = 6- w16toys7_1,w16ra1 = 6- w16activ1_1, w16ra2 = 6- w16activ2_1, w16ra3 = 6- w16activ3_1, w16ra6 = 6- w16activ6_1, w16ra9 = 6- w16activ9_1, w16ra11 = 6- w16activ11_1,w16rc4 = 6- w16charac4_1,w16rc5 = 6- w16charac5_1,w16rc6 = 6- w16charac6_1)
+
+psai_alpha <- goldberg_psai %>%
+  select(w16rt2, w16rt4, w16rt7, w16ra1, w16ra2, w16ra3, w16ra6, w16ra9, w16ra11, w16rc4, w16rc5, w16rc6, w16charac1_1, w16charac2_1, w16charac3_1, w16toys1_1, w16toys3_1, w16toys5_1, w16toys6_1, w16activ4_1, w16activ5_1, w16activ7_1, w16activ8_1, w16activ10_1)
+
+psai_alpha_0 <- psai_alpha %>%
+  mutate(pai= round((w16rt2+ w16rt4+ w16rt7 + w16ra1 + w16ra2 + w16ra3 + w16ra6 + w16ra9 + w16ra11 + w16rc4 + w16rc5 + w16rc6 + w16charac1_1+ w16charac2_1+ w16charac3_1+ w16toys1_1+ w16toys3_1 + w16toys5_1+ w16toys6_1+ w16activ4_1+ w16activ5_1+ w16activ7_1+ w16activ8_1+ w16activ10_1) /23))
+
+cronbach(psai_alpha)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+goldberg_hw<- GoldbergCallieFiltered%>%
+  select(w14HHT1_1:w14HHT13_1)
+hw<- corr.test(goldberg_hw)$r
+hw
+hw_a<- alpha(hw)
+cronbach(goldberg_hw)
+```
 
 
 

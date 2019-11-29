@@ -1,0 +1,76 @@
+---
+title             : "PSY/SDS 364: Measures and Descriptive Statistics"
+shorttitle        : "Measures and Descriptive Statistic"
+
+author: 
+  - name          : "Margret Perry"
+    affiliation   : "1"
+  - name          : "Callie Selvin"
+    affliation    : "2"
+  - name          : "Isabel Zamudio-Moore"
+    affliation    : "3"
+  
+    corresponding : yes    # Define only one corresponding author
+    address       : "Northampton, MA"
+    email         : "izamudiomoore@smith.edu"
+
+affiliation:
+  - id            : "1"
+    institution   : "Smith College"
+
+author_note: >
+  Smith College
+  
+keywords          : "Division of Labor, Gender Role Development, Preschool Activities Inventory"
+wordcount         : "X"
+
+bibliography      : ["MDSreferences.bib","r-references.bib"]
+
+figsintext        : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : no
+
+lang              : "english"
+class             : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r include = FALSE}
+library(papaja)
+library(mosaic)
+library(psych)
+```
+
+```{r create_r-references}
+r_refs(file = "r-references.bib")
+my_citation <- cite_r(file = "MDSreferences.bib")
+```
+
+
+```{r}
+#install.packages("psych")
+#install.packages("plyr")
+library(psysds364data)
+library(devtools)
+library(tidyr)
+library(mosaic)
+library(dplyr)
+library(ggplot2)
+library(plyr)
+```
+
+```{r, include=FALSE}
+
+Goldberg_callie_1<- Goldberg_callie_na%>%
+  muta
+test1<- gls()
+
+
+```
+# Dataset: Goldberg
+
+# Question: How does the display of gender roles in children vary with the change in delegation of household responsibilities between parents?
+
+#Methods

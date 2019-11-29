@@ -1,0 +1,107 @@
+---
+title: "Restructing data"
+author: "Margaret"
+date: "October 23, 2019"
+output: pdf_document
+---
+
+```{r}
+#install.packages("psych")
+#install.packages("plyr")
+library(psysds364data)
+library(psych)
+library(devtools)
+library(tidyr)
+library(mosaic)
+library(dplyr)
+library(ggplot2)
+library(plyr)
+```
+
+
+```{r}
+#Call data
+data("Goldberg_callie")
+
+##sample code referance
+attributes(Goldberg_callie$w16activ4_2)
+names(select(Goldberg_callie, contains("sex")))
+?Goldberg
+attributes(Goldberg_callie$w16ra)
+cortest<-corr.test(select(Goldberg_callie, w16activ1_2, w16activ2_2, w16activ3_2,w16activ4_2, w16activ5_2, w16activ6_2, w16activ7_2, w16activ8_2,w16activ9_2, w16activ10_2, w16activ11_2))$r
+names(select(Goldberg_callie, contains("gender")))
+
+attributes(Goldberg_callie$w16activ10_2)
+attributes(Goldberg_callie$w16activ3_2)
+
+```
+
+
+# Suggested Variable Select
+```{r}
+dataSelect<- Goldberg_callie%>%
+  select(famid, sexor, gender_1, gender_2,  contains("gender"), contains("w16toys"), contains("14hht"), contains("14chcare"),w14CBCLrace_1,w14CBCLrace_2,  contains("w12Gay"), contains("edu"), w11FamInc_1,  contains("activ16"), contains("LGBTCI"), contains("w14CBCLrace_1"))
+
+
+```
+
+
+```{r}
+GoldbergCallieFiltered<- dataSelect2%>% 
+  filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2))
+
+```
+
+
+
+#Get Demagraphics for 
+
+```{r}
+##Demographic data attributes (gender, sexual orentation, regilion)
+attributes(Goldberg_callie$gender_1)
+attributes(Goldberg_callie$w14CBCLgender_1)
+attributes(Goldberg_callie$w14chgender_2)
+
+attributes(Goldberg_callie$w14Religion_1)
+
+attributes(Goldberg_callie$sexor)
+attributes(Goldberg_callie$w14AdSex_1)
+attributes(Goldberg_callie$w14AdSex_2)
+
+##The occurances of demographic varibles
+head(Goldberg_callie)
+count(Goldberg_callie, vars= "w14Religion_1")
+count(Goldberg_callie, vars= "w14Religion_2")
+count(Goldberg_callie, vars= "sexor")
+count(Goldberg_callie, vars= "gender_1")
+count(Goldberg_callie, vars= "gender_2")
+count(Goldberg_callie, vars= "w14AdSex_1")
+count(Goldberg_callie, vars = "w14AdSex_2")
+count(Goldberg_callie, vars= "w14CBCLgender_1") 
+### same freq as w14CBCLgender_2 and quest: there is no documentation for what 3,5, and 22 mean
+
+#sexor based datasets
+samesex_gb<- Goldberg_callie%>%
+  filter(sexor == 1)
+
+hetero_gb<- Goldberg_callie%>%
+  filter(sexor == -1)
+
+
+```
+
+```{r}
+# Race
+attributes(Goldberg_callie$w11Race_2)
+attributes(Goldberg_callie$w14CBCLrace_1)
+# Income
+#Education
+
+```
+
+
+```{r}
+
+
+```
+
