@@ -548,10 +548,51 @@ mutate(SR_PAI=SR_PAI_1+SR_PAI_2)
 
 ```{r}
 ActNum<- 7+6+11
+ActNum<- ActNum*2
+CoupwOneP<- ActNum*0.01
+CoupwTenP<- ActNum*0.05
+CoupwFiveP<- ActNum*0.1
+
+
 ```
 
 ```{r}
 Original<- nrow(Goldberg_Callie_SR)
+```
+
+```{r}
+Goldberg_Callie_SR_10<-Goldberg_Callie_SR%>%
+  filter(SR_PAI>=CoupwTenP)
+
+NumPartwTen<-nrow(Goldberg_Callie_SR_10)
+
+Goldberg_Callie_SR_5<-Goldberg_Callie_SR%>%
+  filter(SR_PAI>=CoupwFiveP)
+
+NumPartwFive<-nrow(Goldberg_Callie_SR_5)
+
+Goldberg_Callie_SR_1<-Goldberg_Callie_SR%>%
+  filter(SR_PAI>=CoupwOneP)
+
+NumPartwOne<-nrow(Goldberg_Callie_SR_1)
+
+
+
+```
+
+
+```{r}
+PartwTenPer<- NumPartwTen/Original
+PartwTenPer
+
+PartwFivePer<-  NumPartwFive/Original
+PartwFivePer
+
+PartwOnePer<- NumPartwOne/Original
+PartwFivePer
+```
+```{r}
+
 ```
 
 
@@ -599,24 +640,58 @@ names(select(Goldberg_callie, contains("chage")))
 ```
 
 ```{r}
-
 Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
   mutate(w16chagemo=0)
+
 AgeSubset<- Goldberg_Callie_SR%>%
   select(famid, partnum, w16chagemo_1,w16chagemo_2)
 
 AgeMatrix<- as.matrix(AgeSubset)
 AgeMatrixSub<- AgeMatrix[ ,3:4]
 AgeMeans<- rowMeans(AgeMatrixSub)
-#View(AgeMatrixSub)
+head(AgeMatrixSub)
 #View(AgeMeans)
-AgeMatrix<-cbind(AgeMatrix,AgeMeans)
+AgeMatrix<-cbind(AgeMatrix, AgeMeans)
 AgeMRejoin<-as.data.frame(AgeMatrix)
 #View(AgeMatrix)
 #View(AgeMRejoin)
 
 Goldberg_Callie_SR<-join(AgeMRejoin,Goldberg_Callie_SR)
 #View(Rejoin)
+
+```
+
+
+Take the mean of each category for each couple
+
+```{r}
+
+Toy1<- Goldberg_Callie_SR%>%
+  select(famid, partnum, w16toy1_1, w16toy2_1)
+
+Toy1<- as.matrix(Toy1)
+Toy1M<- AgeMatrix[ ,3:4]
+Toy1Means<- rowMeans(Toy1M)
+head(Toy1Means)
+
+
+Toy1<-cbind(Toy1,Toy1Means)
+Toy1MRejoin<-as.data.frame(Toy1)
+head(Toy1Means)
+
+
+```
+
+
+
+```{r}
+
+
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+  mutate(w16toys1Mean=mean(w16toys1_1, w16toys1_2))
+
+Test<- Goldberg_Callie_SR%>%
+  select(w16toys1Mean)
 
 ```
 
@@ -634,8 +709,8 @@ PAISubset<- Goldberg_Callie_SR%>%
 
 PAISubsetMatrix<- as.matrix(PAISubset)
 PAISubsetMatrix<- PAISubsetMatrix[ ,1:2]
-AgeMeans<- rowMeans(AgeMatrixSub)
-#View(AgeMatrixSub)
+AgeMeans<-colMeans(AgeMatrixSub)
+#View(PAISubsetMatrix)
 #View(AgeMeans)
 AgeMatrix<-cbind(AgeMatrix,AgeMeans)
 AgeMRejoin<-as.data.frame(AgeMatrix)
