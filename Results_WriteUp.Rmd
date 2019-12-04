@@ -71,6 +71,8 @@ library(plyr)
 Our resaerch seeks to look out the question of how the display of gender roles in children vary with the change in delegation of household responsibilities between parents?
 
 
+
+
 2. Dyadic Data Analaysis
 3. Take a figure of this.
 4. Talk about data processing and how we
@@ -398,47 +400,37 @@ Goldberg_Callie_SR<-join(AgeMRejoin,Goldberg_Callie_SR)
 names(select(Goldberg_callie, contains("chage")))
 ```
 
-```{r}
 
-Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
-  mutate(PAIfin=0)
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Standardization
-#RETURN TO!
-```{r}
-Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
-  mutate(PAIst=0)
-
-Goldberg_Callie_SR$PAIst<- if_else(Goldberg_Callie_SR$w14chgender_1==-1,
-            Goldberg_Callie_SR$PAIfin*1.075-w16chagemo*0.177+0.088 )
-
-Goldberg_Callie_SR$PAIst<- if_else(Goldberg_Callie_SR$w14chgender_1==1,
-                    PAIfin*1.026-w16chagemo*0.218+8.33)
-
-```
 
 ```{r}
 #Get the mean of all tasks
 
 
 ```
+
+
+
+#Models|
+
+<p> 
+Hypothesis 1: 
+We hypothesized that households with an unequal distribution of labor will be associated with whether a child displays gendered play.
+
+<p> 
+Hypothesis 2: 
+We hypothesize that unequal division of labor in heterosexual couples will have a greater effect on gendered play in children than the labor disruption in same-sex couples.
+
+<p> 
+Hypothesis 3:  
+We hypothesize that the division of labor will be associated with having a larger effect on whether a child display displays gender-typed play than the family structure.
+
+Defining our models
+```{r}
+
+
+```
+
+
 #Main Result Section
 1. Write about coeficents.
 2. Figure
