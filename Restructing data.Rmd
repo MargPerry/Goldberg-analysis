@@ -8,7 +8,7 @@ output: pdf_document
 ```{r}
 #install.packages("psych")
 #install.packages("plyr")
-library(psysds364data)
+#library(psysds364data)
 library(psych)
 library(devtools)
 library(tidyr)
@@ -26,7 +26,6 @@ data("Goldberg_callie")
 ##sample code referance
 attributes(Goldberg_callie$w16activ4_2)
 names(select(Goldberg_callie, contains("age")))
-?Goldberg
 attributes(Goldberg_callie$w14HHT10_1)
 cortest<-corr.test(select(Goldberg_callie, w16activ1_2, w16activ2_2, w16activ3_2,w16activ4_2, w16activ5_2, w16activ6_2, w16activ7_2, w16activ8_2,w16activ9_2, w16activ10_2, w16activ11_2))$r
 #names(select(Goldberg_callie, contains("gender")))
@@ -57,9 +56,9 @@ dataSelect<- Goldberg_callie%>%
 
 
 ```{r}
-<<<<<<< HEAD
-GoldbergCallieFiltered<- dataSelect2%>% 
-  filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2))
+
+# GoldbergCallieFiltered<- dataSelect2%>% 
+#   filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2))
 
   
   
@@ -70,8 +69,7 @@ GoldbergCallieFiltered<- Goldberg_callie%>%
    !is.na(w16activ1_1),!is.na(w16activ2_1),!is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1),!is.na(w16activ10_1), !is.na(w16activ11_1),
    !is.na(w16activ1_2),!is.na(w16activ2_1), !is.na(w16activ3_2),!is.na(w16activ4_2), !is.na(w16activ5_2),!is.na(w16activ6_2), !is.na(w16activ7_2),!is.na(w16activ8_2), !is.na(w16activ9_2), 
    !is.na(w16charac1_1), !is.na(w16charac2_1), !is.na(w16charac3_1),!is.na(w16charac4_1), !is.na(w16charac5_1), !is.na(w16charac6_1), !is.na(w16charac1_2), !is.na(w16charac2_2),!is.na(w16charac3_2),!is.na(w16charac4_2),!is.na(w16charac5_2), !is.na(w16charac6_2)
-   )
-
+   )%>%
   filter(!is.na(famid), !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2) , !is.na(w16toys5_2), !is.na(w16activ1_1),!is.na(w16activ2_1),!is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1))
 
 GoldbergCallieFiltered_1<- Goldberg_callie%>% 
@@ -83,10 +81,8 @@ GoldbergCallieFiltered_1<- Goldberg_callie%>%
 ```{r}
 
 ParCount<- NROW(GoldbergCallieFiltered)
-=======
 
 ParCount<- NROW(Goldberg_callie)
->>>>>>> 012de60bf66a40705947690b584016a966cffa18
 ```
 #Get Demagraphics for 
 
@@ -108,14 +104,10 @@ head(Goldberg_callie)
 count(Goldberg_callie, vars= "w14Religion_1")
 count(Goldberg_callie, vars= "sexor")
 count(Goldberg_callie, vars= "gender_1")
-<<<<<<< HEAD
 count(Goldberg_callie, vars= "w14CBCLgender_1") 
 count(GoldbergCallieFiltered, vars= "w14CBCLgender_1") 
-=======
 count(Goldberg_callie, vars= "w14AdSex_1")
 count(Goldberg_callie, vars= "w14CBCLgender_1") 
->>>>>>> 012de60bf66a40705947690b584016a966cffa18
-
 
 ### same freq as w14CBCLgender_2 and quest: there is no documentation for what 3,5, and 22 mean
 names(Goldberg, select(contains("age")))
@@ -380,6 +372,10 @@ psai_alpha <- goldberg_psai %>%
 psai_alpha_0 <- psai_alpha %>%
   mutate(pai= round((w16rt2+ w16rt4+ w16rt7 + w16ra1 + w16ra2 + w16ra3 + w16ra6 + w16ra9 + w16ra11 + w16rc4 + w16rc5 + w16rc6 + w16charac1_1+ w16charac2_1+ w16charac3_1+ w16toys1_1+ w16toys3_1 + w16toys5_1+ w16toys6_1+ w16activ4_1+ w16activ5_1+ w16activ7_1+ w16activ8_1+ w16activ10_1) /23))
 
+
+
+Goldberg_callie$w16PSAI <- rowMeans(goldberg_psai %>% select(w16rt2, w16rt4, w16rt7, w16ra1, w16ra2, w16ra3, w16ra6, w16ra9, w16ra11, w16rc4, w16rc5, w16rc6, w16charac1_1, w16charac2_1, w16charac3_1, w16toys1_1, w16toys3_1, w16toys5_1, w16toys6_1, w16activ4_1, w16activ5_1, w16activ7_1, w16activ8_1, w16activ10_1), na.rm = TRUE)
+
 #cronbach(psai_alpha)
 
 
@@ -393,7 +389,7 @@ cronbach(goldberg_hw)
 
 
 ```{r}
-data("Goldberg_callie")
+#data("Goldberg_callie")
 Goldberg_Callie_2<- Goldberg_callie
 
 ```
@@ -604,27 +600,6 @@ ActNum<- 7+6+11
 ```{r}
 Original<- nrow(Goldberg_Callie_SR)
 ```
-
-
-```{r}
-
-```
-
-```{r}
-
-
-```
-```{r}
-
-
-
-```{r}
-#Find the mean & sum for 
-
-
-
-```
-
 
 
 

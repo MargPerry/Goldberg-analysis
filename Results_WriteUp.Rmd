@@ -416,15 +416,15 @@ Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
 
 
 
+```{r}
+
+
+Goldberg_callie_SR_2%>%
+  mutate(pai= round((w16rt2+ w16rt4+ w16rt7 + w16ra1 + w16ra2 + w16ra3 + w16ra6 + w16ra9 + w16ra11 + w16rc4 + w16rc5 + w16rc6 + w16charac1_1+ w16charac2_1+ w16charac3_1+ w16toys1_1+ w16toys3_1 + w16toys5_1+ w16toys6_1+ w16activ4_1+ w16activ5_1+ w16activ7_1+ w16activ8_1+ w16activ10_1) /23))
 
 
 
-
-
-
-
-
-
+```
 
 
 
@@ -457,5 +457,10 @@ Goldberg_Callie_SR$PAIst<- if_else(Goldberg_Callie_SR$w14chgender_1==1,
 
 round(coef,#decminal)
 
+```{r}
+#PSAI Final score
 
+Goldberg_callie$w16PSAI <- rowMeans(goldberg_psai %>% select(w16rt2, w16rt4, w16rt7, w16ra1, w16ra2, w16ra3, w16ra6, w16ra9, w16ra11, w16rc4, w16rc5, w16rc6, w16charac1_1, w16charac2_1, w16charac3_1, w16toys1_1, w16toys3_1, w16toys5_1, w16toys6_1, w16activ4_1, w16activ5_1, w16activ7_1, w16activ8_1, w16activ10_1), na.rm = TRUE)
+
+```
 
