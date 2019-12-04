@@ -8,7 +8,7 @@ output: pdf_document
 ```{r}
 #install.packages("psych")
 #install.packages("plyr")
-library(psysds364data)
+#library(psysds364data)
 library(psych)
 library(devtools)
 library(tidyr)
@@ -26,13 +26,14 @@ data("Goldberg_callie")
 ##sample code referance
 attributes(Goldberg_callie$w16activ4_2)
 names(select(Goldberg_callie, contains("age")))
-?Goldberg
 attributes(Goldberg_callie$w14HHT10_1)
 cortest<-corr.test(select(Goldberg_callie, w16activ1_2, w16activ2_2, w16activ3_2,w16activ4_2, w16activ5_2, w16activ6_2, w16activ7_2, w16activ8_2,w16activ9_2, w16activ10_2, w16activ11_2))$r
 #names(select(Goldberg_callie, contains("gender")))
 
 attributes(Goldberg_callie$w16activ10_2)
 attributes(Goldberg_callie$w16activ3_2)
+
+?Goldberg
 
 ```
 
@@ -42,20 +43,44 @@ attributes(Goldberg_callie$w16activ3_2)
     geom_bar()+
    labs(main="Number of Lesbian, Gay, and Heterosexual Couples", x= "Sexual Orientation", y= "Number Of Couples")+
 scale_x_discrete(limits=c("Same-Sex","Heterosexual"))
-
 ```
 
 
 # Suggested Variable Select
 ```{r}
 dataSelect<- Goldberg_callie%>%
-  select(famid, sexor, gender_1, gender_2,  contains("gender"), contains("w16toys"), contains("14hht"), contains("14chcare"),w14CBCLrace_1,w14CBCLrace_2,  contains("w12Gay"), contains("edu"), w11FamInc_1,  contains("activ16"), contains("LGBTCI"), contains("w14CBCLrace_1"),contains("16HHT"),contains("16activ"))
+  select(famid, sexor, gender_1, gender_2,  contains("gender"), contains("w16toys"), contains("14hht"), contains("14chcare"),w14CBCLrace_1,w14CBCLrace_2,  contains("w12Gay"), contains("edu"), w11FamInc_1,  contains("activ16"), contains("LGBTCI"), contains("w14CBCLrace_1"))
 
 
 ```
 
 
 ```{r}
+
+# GoldbergCallieFiltered<- dataSelect2%>% 
+#   filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2))
+
+  
+  
+  
+  
+GoldbergCallieFiltered<- Goldberg_callie%>% 
+  filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2) , !is.na(w16toys5_2), !is.na(w14HHT1_1), !is.na(w14HHT2_1) , !is.na(w14HHT3_1), !is.na(w14HHT4_2),!is.na(w14HHT5_1),!is.na(w14HHT6_1), !is.na(w14HHT7_1), !is.na(w14HHT8_1), !is.na(w14HHT9_1), !is.na(w14HHT10_1), !is.na(w14HHT11_1), !is.na(w14HHT12_1),!is.na(w14HHT13_1),!is.na(w14HHT1_2), !is.na(w14HHT3_2), !is.na(w14HHT4_2), !is.na(w14HHT5_2),!is.na(w14HHT6_2),!is.na(w14HHT7_2), !is.na(w14HHT8_2), !is.na(w14HHT9_2), !is.na(w14HHT10_2), !is.na(w14HHT11_2), !is.na(w14HHT12_2), !is.na(w14HHT13_2),
+   !is.na(w16activ1_1),!is.na(w16activ2_1),!is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1),!is.na(w16activ10_1), !is.na(w16activ11_1),
+   !is.na(w16activ1_2),!is.na(w16activ2_1), !is.na(w16activ3_2),!is.na(w16activ4_2), !is.na(w16activ5_2),!is.na(w16activ6_2), !is.na(w16activ7_2),!is.na(w16activ8_2), !is.na(w16activ9_2), 
+   !is.na(w16charac1_1), !is.na(w16charac2_1), !is.na(w16charac3_1),!is.na(w16charac4_1), !is.na(w16charac5_1), !is.na(w16charac6_1), !is.na(w16charac1_2), !is.na(w16charac2_2),!is.na(w16charac3_2),!is.na(w16charac4_2),!is.na(w16charac5_2), !is.na(w16charac6_2)
+   )%>%
+  filter(!is.na(famid), !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2) , !is.na(w16toys5_2), !is.na(w16activ1_1),!is.na(w16activ2_1),!is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1))
+
+GoldbergCallieFiltered_1<- Goldberg_callie%>% 
+  filter(!is.na(famid), !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys2_1), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), !is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2) , !is.na(w16toys5_2), !is.na(w16activ1_1),!is.na(w16activ2_1),!is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1), !is.na(w14HHT1_1), !is.na(w14HHT2_1), !is.na(w14HHT3_1),!is.na(w14HHT4_1), !is.na(w14HHT5_1), !is.na(w14HHT6_1), !is.na(w14HHT7_1), !is.na(w14HHT8_1),!is.na(w14HHT9_1), !is.na(w14HHT10_1),!is.na(w14HHT11_1), !is.na(w14HHT12_1), !is.na(w14HHT13_1))
+
+```
+
+
+```{r}
+
+ParCount<- NROW(GoldbergCallieFiltered)
 
 ParCount<- NROW(Goldberg_callie)
 ```
@@ -65,6 +90,7 @@ ParCount<- NROW(Goldberg_callie)
 ##Demographic data attributes (gender, sexual orentation, regilion)
 attributes(Goldberg_callie$gender_1)
 attributes(Goldberg_callie$w14CBCLgender_1)
+
 attributes(Goldberg_callie$w14chgender_2)
 
 attributes(Goldberg_callie$w14Religion_1)
@@ -78,9 +104,10 @@ head(Goldberg_callie)
 count(Goldberg_callie, vars= "w14Religion_1")
 count(Goldberg_callie, vars= "sexor")
 count(Goldberg_callie, vars= "gender_1")
+count(Goldberg_callie, vars= "w14CBCLgender_1") 
+count(GoldbergCallieFiltered, vars= "w14CBCLgender_1") 
 count(Goldberg_callie, vars= "w14AdSex_1")
 count(Goldberg_callie, vars= "w14CBCLgender_1") 
-
 
 ### same freq as w14CBCLgender_2 and quest: there is no documentation for what 3,5, and 22 mean
 names(Goldberg, select(contains("age")))
@@ -95,6 +122,25 @@ count(samesex_gb, vars= "sexor")
 count(samesex_gb, vars= "gender_1")
 count(samesex_gb, vars= "w14AdSex_1")
 count(samesex_gb, vars= "w14CBCLgender_1") 
+
+hetero_gb<- Goldberg_callie%>%
+  filter(sexor == -1)
+
+count(hetero_gb, vars= "w14Religion_1")
+count(hetero_gb, vars= "sexor")
+count(hetero_gb, vars= "gender_1")
+count(hetero_gb, vars= "w14AdSex_1")
+count(hetero_gb, vars= "w14CBCLgender_1") 
+
+
+```
+
+```{r}
+# Race
+attributes(Goldberg_callie$w11Race_2)
+attributes(Goldberg_callie$w14CBCLrace_1)
+# Income
+#Education
 count(samesex_gb, vars= "w14CBCLage_1")
 is.numeric(samesex_gb$w14CBCLage_1)
 ssavg_chage<- mean(samesex_gb$w14CBCLage_1, na.rm= TRUE)
@@ -263,6 +309,7 @@ summary(Goldberg_callie2$w11FamInc)
 ```
 
 
+
 ```{r}
 FamIncome<- Goldberg_callie%>%
   filter(w11FamInc)
@@ -281,14 +328,10 @@ mutate( w11FamInc= ifelse(w11FamInc_1 %in% 0:20000, "20k or less", ifelse(w11Fam
 
 
 ```
-
-
 ```{r}
 w11FamInc<- Goldberg_callie2%>%
   select(w11FamInc)
 View(w11FamInc)
-
-
 ```
 
 
@@ -329,6 +372,10 @@ psai_alpha <- goldberg_psai %>%
 psai_alpha_0 <- psai_alpha %>%
   mutate(pai= round((w16rt2+ w16rt4+ w16rt7 + w16ra1 + w16ra2 + w16ra3 + w16ra6 + w16ra9 + w16ra11 + w16rc4 + w16rc5 + w16rc6 + w16charac1_1+ w16charac2_1+ w16charac3_1+ w16toys1_1+ w16toys3_1 + w16toys5_1+ w16toys6_1+ w16activ4_1+ w16activ5_1+ w16activ7_1+ w16activ8_1+ w16activ10_1) /23))
 
+
+
+Goldberg_callie$w16PSAI <- rowMeans(goldberg_psai %>% select(w16rt2, w16rt4, w16rt7, w16ra1, w16ra2, w16ra3, w16ra6, w16ra9, w16ra11, w16rc4, w16rc5, w16rc6, w16charac1_1, w16charac2_1, w16charac3_1, w16toys1_1, w16toys3_1, w16toys5_1, w16toys6_1, w16activ4_1, w16activ5_1, w16activ7_1, w16activ8_1, w16activ10_1), na.rm = TRUE)
+
 #cronbach(psai_alpha)
 
 
@@ -342,7 +389,7 @@ cronbach(goldberg_hw)
 
 
 ```{r}
-data("Goldberg_callie")
+#data("Goldberg_callie")
 Goldberg_Callie_2<- Goldberg_callie
 
 ```
@@ -594,27 +641,6 @@ PartwFivePer
 ```{r}
 
 ```
-
-
-```{r}
-
-```
-
-```{r}
-
-
-```
-```{r}
-
-
-
-```{r}
-#Find the mean & sum for 
-
-
-
-```
-
 
 
 
