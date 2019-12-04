@@ -488,16 +488,245 @@ ifelse(is.na(Goldberg_Callie_SR$w16toys7_1),1,0)
  # SR_PSAc1=w16charac1_1)
 #summary(Goldberg_Callie_SR$SR_PSAc1)
 Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
-mutate(SR_PSA=SR_PSAc1_1+ SR_PSAc2_1+ SR_PSAc3_1+ SR_PSAc4_1+ SR_PSAc5_1+ SR_PSAc6_1+
+mutate(SR_PAI_1=SR_PSAc1_1+ SR_PSAc2_1+ SR_PSAc3_1+ SR_PSAc4_1+ SR_PSAc5_1+ SR_PSAc6_1+
 SR_PSAa1_1+ SR_PSAa2_1+ SR_PSAa3_1+ SR_PSAa4_1+ SR_PSAa5_1+ SR_PSAa6_1+ SR_PSAa7_1+ SR_PSAa8_1, SR_PSAa9_1+ SR_PSAa10_1, SR_PSAa11_1+
 SR_PSAt1_1+ SR_PSAt2_1, SR_PSAt3_1, SR_PSAt4_1, SR_PSAt5_1+ SR_PSAt6_1, SR_PSAt7_1)
+
+```
+
+#Scale Score
+```{r}
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+mutate(SR_PSAc1_2=0, SR_PSAc2_2=0, SR_PSAc3_2=0, SR_PSAc4_2=0, SR_PSAc5_2=0, SR_PSAc6_2=0,
+SR_PSAa1_2=0, SR_PSAa2_2=0, SR_PSAa3_2=0, SR_PSAa4_2=0, SR_PSAa5_2=0, SR_PSAa6_2=0, SR_PSAa7_2=0, SR_PSAa8_2=0, SR_PSAa9_2=0, SR_PSAa10_2=0, SR_PSAa11_2=0,
+SR_PSAt2_2=0, SR_PSAt2_2=0, SR_PSAt3_2=0, SR_PSAt4_2=0, SR_PSAt5_2=0, SR_PSAt6_2=0, SR_PSAt7_2=0)
+
+#Create binary variables for wether a specific variable has been recorded for Person 1
+#Binary for character
+Goldberg_Callie_SR$SR_PSAc1_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac1_2), 1,0)
+
+Goldberg_Callie_SR$SR_PSAc2_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac2_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAc3_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac3_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAc4_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac4_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAc5_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac5_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAc6_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac6_2),1,0)
+
+#Binary for activity
+Goldberg_Callie_SR$SR_PSAa1_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ1_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAa2_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ2_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAa3_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ3_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAa4_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ4_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAa5_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ5_2),1,0)
+
+
+Goldberg_Callie_SR$SR_PSAa6_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ6_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAa7_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ7_2),1,0)
+
+
+Goldberg_Callie_SR$SR_PSAa8_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ8_2),1,0)
+
+
+Goldberg_Callie_SR$SR_PSAa9_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ9_2),1,0)
+
+
+Goldberg_Callie_SR$SR_PSAa10_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ10_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAa11_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ11_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt1_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys1_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt2_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys2_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt3_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys3_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt4_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys4_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt5_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys5_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt6_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys6_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt7_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys7_2),1,0)
+
+#SR_PSAc3=w16charac3_1,     SR_PSAc4= w16charac4_1, SR_PSAc1=w16charac5_1,     SR_PSAc6= w16charac6_1, 
+ # SR_PSAc1=w16charac1_1)
+#summary(Goldberg_Callie_SR$SR_PSAc1)
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+mutate(SR_PAI_2=SR_PSAc1_2+ SR_PSAc2_2+ SR_PSAc3_2+ SR_PSAc4_2+ SR_PSAc5_2+ SR_PSAc6_2+
+SR_PSAa1_2+ SR_PSAa2_2+ SR_PSAa3_2+ SR_PSAa4_2+ SR_PSAa5_2+ SR_PSAa6_2+ SR_PSAa7_2+ SR_PSAa8_2, SR_PSAa9_2+ SR_PSAa10_2, SR_PSAa11_2+
+SR_PSAt1_2+ SR_PSAt2_2, SR_PSAt3_2, SR_PSAt4_2, SR_PSAt5_2+ SR_PSAt6_2, SR_PSAt7_2)
+
+```
+
+```{r}
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+mutate(SR_PAI=SR_PAI_1+SR_PAI_2)
+
+```
+
+
+```{r}
+ActNum<- 7+6+11
+```
+
+```{r}
+Original<- nrow(Goldberg_Callie_SR)
+```
+
+
+```{r}
+
+```
+
+```{r}
+
+
+```
+```{r}
+
+
+
+```{r}
+#Find the mean & sum for 
+
+
+
+```
+
+
+
+
+
+```{r}
+rowMeans()
+
+
+```
+
+```{r}
+attributes()
+
+```
+
+#Child Gender Data
+```{r}
+ summary(Goldberg_Callie_SR$w14chgender_1)
+```
+
+```{r}
+names(select(Goldberg_callie, contains("chage")))
+```
+
+```{r}
+
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+  mutate(w16chagemo=0)
+AgeSubset<- Goldberg_Callie_SR%>%
+  select(famid, partnum, w16chagemo_1,w16chagemo_2)
+
+AgeMatrix<- as.matrix(AgeSubset)
+AgeMatrixSub<- AgeMatrix[ ,3:4]
+AgeMeans<- rowMeans(AgeMatrixSub)
+#View(AgeMatrixSub)
+#View(AgeMeans)
+AgeMatrix<-cbind(AgeMatrix,AgeMeans)
+AgeMRejoin<-as.data.frame(AgeMatrix)
+#View(AgeMatrix)
+#View(AgeMRejoin)
+
+Goldberg_Callie_SR<-join(AgeMRejoin,Goldberg_Callie_SR)
+#View(Rejoin)
 
 ```
 
 
 ```{r}
 
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+  mutate(PAIfin=0)
 
+
+PAISubset<- Goldberg_Callie_SR%>%
+  select(famid, partnum,w16charac1_1,w16charac1_1,w16charac2_1,w16charac2_1,w16charac3_1,w16charac4_1,w16charac5_1,w16charac6_1,w16activ1_1,w16activ2_1,w16activ3_1,w16activ4_1,w16activ5_1,w16activ6_1,w16activ7_1,w16activ8_1,w16activ9_1,w16activ10_1,w16activ11_1, 
+         w16toys1_1,w16toys2_1,w16toys3_1,w16toys4_1,w16toys5_1,
+         w16toys6_1,w16toys7_1)
+
+PAISubsetMatrix<- as.matrix(PAISubset)
+PAISubsetMatrix<- PAISubsetMatrix[ ,1:2]
+AgeMeans<- rowMeans(AgeMatrixSub)
+#View(AgeMatrixSub)
+#View(AgeMeans)
+AgeMatrix<-cbind(AgeMatrix,AgeMeans)
+AgeMRejoin<-as.data.frame(AgeMatrix)
+#View(AgeMatrix)
+#View(AgeMRejoin)
+
+Goldberg_Callie_SR<-join(AgeMRejoin,Goldberg_Callie_SR)
+#View(Rejoin)
+
+```
+
+
+
+
+
+
+
+
+
+
+#RETURN TO!
+```{r}
+
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+  mutate(PAIfin=0)
+
+```
+
+
+//Standardization
+#RETURN TO!
+```{r}
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+  mutate(PAIst=0)
+
+Goldberg_Callie_SR$PAIst<- if_else(Goldberg_Callie_SR$w14chgender_1==-1,
+            Goldberg_Callie_SR$PAIfin*1.075-w16chagemo*0.177+0.088 )
+
+Goldberg_Callie_SR$PAIst<- if_else(Goldberg_Callie_SR$w14chgender_1==1,
+                    PAIfin*1.026-w16chagemo*0.218+8.33)
 
 ```
 

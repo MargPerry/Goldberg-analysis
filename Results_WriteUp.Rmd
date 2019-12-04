@@ -77,11 +77,6 @@ test1<- gls()
 
 #Remind reaader of resrach question
 Our resaerch seeks to look out the question of how the display of gender roles in children vary with the change in delegation of household responsibilities between parents?
-Given that prior research has shown that parental attitudes was shown to have an association with gender play conformity for children, we have no reason to predict that this association will not hold [@fulcher2008individual].
-In addition, other studies conducted pior have shown that the division of labour was also associated with the gendered play displayed by child  [@CITATION-farr* @(Replace) & @CITATION-Goldberg].
-It is hypothesized that there will be an association between the delegation of household reponsiblities and the display of gender roles for the children. Furthermore, research by @CITATION found that the makeup of a couple was known to be associated with the 
-
-For our study, we have 
 
 
 2. Dyadic Data Analaysis
