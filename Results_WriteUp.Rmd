@@ -337,7 +337,7 @@ PartwOnePer
 
 In our data processing, it was decided that we would work with a scale score and would only exclude participants if the participant answered at least 5% of questions. This would only allow us to keep only a little over half of our paricipants in the study, `r printnum(PartwOnePer)` It was decided that regardless of the scale score partipants would be included in the study.
 
-To arrive at the model, we worked to standardize information based on gender and the age of the child working of the standardization models found by Garcia et al.
+
 
 ```{r}
 #Call data
@@ -353,6 +353,85 @@ names(select(Goldberg_callie, contains("gender")))
 
 attributes(Goldberg_callie$w16activ10_2)
 attributes(Goldberg_callie$w16activ3_2)
+```
+
+
+To arrive at the model, we worked to standardize information based on gender and the age of the child working of the standardization models found by Garcia et al.
+
+#Child Gender Data
+```{r}
+ summary(Goldberg_Callie_SR$w14chgender_1)
+```
+
+```{r}
+names(select(Goldberg_callie, contains("chage")))
+```
+
+```{r}
+
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+  mutate(w16chagemo=0)
+
+AgeSubset<- Goldberg_Callie_SR%>%
+  select(famid, partnum, w16chagemo_1,w16chagemo_2)
+
+AgeMatrix<- as.matrix(AgeSubset)
+AgeMatrixSub<- AgeMatrix[ ,3:4]
+AgeMeans<- rowMeans(AgeMatrixSub)
+head(AgeMatrixSub)
+#View(AgeMeans)
+AgeMatrix<-cbind(AgeMatrix, AgeMeans)
+AgeMRejoin<-as.data.frame(AgeMatrix)
+#View(AgeMatrix)
+#View(AgeMRejoin)
+
+Goldberg_Callie_SR<-join(AgeMRejoin,Goldberg_Callie_SR)
+#View(Rejoin)
+
+```
+
+```{r}
+ summary(Goldberg_Callie_SR$w14chgender_1)
+```
+
+```{r}
+names(select(Goldberg_callie, contains("chage")))
+```
+
+```{r}
+
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+  mutate(PAIfin=0)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Standardization
+#RETURN TO!
+```{r}
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+  mutate(PAIst=0)
+
+Goldberg_Callie_SR$PAIst<- if_else(Goldberg_Callie_SR$w14chgender_1==-1,
+            Goldberg_Callie_SR$PAIfin*1.075-w16chagemo*0.177+0.088 )
+
+Goldberg_Callie_SR$PAIst<- if_else(Goldberg_Callie_SR$w14chgender_1==1,
+                    PAIfin*1.026-w16chagemo*0.218+8.33)
+
 ```
 
 ```{r}
