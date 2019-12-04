@@ -61,6 +61,14 @@ library(ggplot2)
 library(plyr)
 ```
 
+```{r, include=FALSE}
+# 
+# Goldberg_callie_1<- Goldberg_callie_na%>%
+#   muta
+# test1<- gls()
+
+
+```
 # Dataset: Goldberg
 
 # Question: How does the display of gender roles in children vary with the change in delegation of household responsibilities between parents?
@@ -400,7 +408,25 @@ Goldberg_Callie_SR<-join(AgeMRejoin,Goldberg_Callie_SR)
 names(select(Goldberg_callie, contains("chage")))
 ```
 
+<<<<<<< HEAD
+=======
+```{r}
 
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+  mutate(PAIfin=0)
+
+```
+
+
+
+
+```{r}
+
+Goldberg_callie_SR_2<-Goldberg_Callie_SR%>%
+  mutate(pai= round((w16rt2+ w16rt4+ w16rt7 + w16ra1 + w16ra2 + w16ra3 + w16ra6 + w16ra9 + w16ra11 + w16rc4 + w16rc5 + w16rc6 + w16charac1_1+ w16charac2_1+ w16charac3_1+ w16toys1_1+ w16toys3_1 + w16toys5_1+ w16toys6_1+ w16activ4_1+ w16activ5_1+ w16activ7_1+ w16activ8_1+ w16activ10_1) /23))
+
+
+```
 
 ```{r}
 #Get the mean of all tasks
@@ -441,5 +467,53 @@ Defining our models
 
 round(coef,#decminal)
 
+```{r}
 
 
+
+```
+
+```{r}
+ AgeSubset<- Goldberg_Callie_SR%>%
+   select(famid, partnum,w16chagemo_1,w16chagemo_2)
+# # 
+head(AgeSubset)
+```
+
+
+
+```{r}
+AgeSubsetMatrix<- as.matrix(AgeSubset)
+AgeSubsetMatrix<- AgeSubsetMatrix[ ,3:4]
+AgeMeans<-colMeans(AgeMatrixSub)
+#View(PAISubsetMatrix)
+#View(AgeMeans)
+AgeMatrix<-cbind(AgeMatrix,AgeMeans)
+AgeMRejoin<-as.data.frame(AgeMatrix)
+#View(AgeMatrix)
+#View(AgeMRejoin)
+
+Goldberg_Callie_SR<-join(AgeMRejoin,Goldberg_Callie_SR)
+#View(Rejoin)
+
+```
+
+
+```{r}
+#PSAI Final score
+
+Goldberg_Callie_SR$w16PSAI <- rowMeans(goldberg_psai %>% select(w16rt2, w16rt4, w16rt7, w16ra1, w16ra2, w16ra3, w16ra6, w16ra9, w16ra11, w16rc4, w16rc5, w16rc6, w16charac1_1, w16charac2_1, w16charac3_1, w16toys1_1, w16toys3_1, w16toys5_1, w16toys6_1, w16activ4_1, w16activ5_1, w16activ7_1, w16activ8_1, w16activ10_1), na.rm = TRUE)
+
+```
+
+```{r}
+
+Goldberg_Callie_SR$PAIst<- if_else(Goldberg_Callie_SR$w14chgender_1==-1,
+            Goldberg_Callie_SR$w16PSAI*1.075-Goldberg_Callie_SR$AgeMeans*0.177+0.088 )
+
+Goldberg_Callie_SR$PAIst<- if_else(Goldberg_Callie_SR$w14chgender_1==1,
+           Goldberg_Callie_SR$w16PSAI*1.026-Goldberg_Callie_SR$AgeMeans*0.218+8.33)
+
+```
+
+````
