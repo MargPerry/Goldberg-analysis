@@ -84,6 +84,268 @@ Our resaerch seeks to look out the question of how the display of gender roles i
 4. Talk about data processing and how we
 arrived at the model.
 
+Data Processing
+
+#ScaleScore
+
+
+
+```{r}
+data("Goldberg_callie")
+Goldberg_Callie_2<- Goldberg_callie
+
+```
+
+#Scale Score
+```{r}
+Goldberg_Callie_SR<- Goldberg_Callie_2%>%
+mutate(SR_PSAc1_1=0, SR_PSAc2_1=0, SR_PSAc3_1=0, SR_PSAc4_1=0, SR_PSAc5_1=0, SR_PSAc6_1=0,
+SR_PSAa1_1=0, SR_PSAa2_1=0, SR_PSAa3_1=0, SR_PSAa4_1=0, SR_PSAa5_1=0, SR_PSAa6_1=0, SR_PSAa7_1=0, SR_PSAa8_1=0, SR_SR_PSAa9_1=0, SR_PSAa10_1=0, SR_PSAa11_1=0,
+SR_PSAt1_1=0, SR_PSAt2_1=0, SR_PSAt3_1=0, SR_PSAt4_1=0, SR_PSAt5_1=0, SR_PSAt6_1=0, SR_PSAt7_1=0)
+
+#Create binary variables for wether a specific variable has been recorded for Person 1
+#Binary for character
+Goldberg_Callie_SR$SR_PSAc1_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac1_1), 1,0)
+
+Goldberg_Callie_SR$SR_PSAc2_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac2_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAc3_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac3_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAc4_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac4_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAc5_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac5_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAc6_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac6_1),1,0)
+
+#Binary for activity
+Goldberg_Callie_SR$SR_PSAa1_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ1_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAa2_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ2_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAa3_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ3_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAa4_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ4_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAa5_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ5_1),1,0)
+
+
+Goldberg_Callie_SR$SR_PSAa6_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ6_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAa7_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ7_1),1,0)
+
+
+Goldberg_Callie_SR$SR_PSAa8_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ8_1),1,0)
+
+
+Goldberg_Callie_SR$SR_PSAa9_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ9_1),1,0)
+
+
+Goldberg_Callie_SR$SR_PSAa10_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ10_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAa11_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ11_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAt1_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys1_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAt2_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys2_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAt3_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys3_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAt4_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys4_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAt5_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys5_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAt6_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys6_1),1,0)
+
+Goldberg_Callie_SR$SR_PSAt7_1 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys7_1),1,0)
+
+#SR_PSAc3=w16charac3_1,     SR_PSAc4= w16charac4_1, SR_PSAc1=w16charac5_1,     SR_PSAc6= w16charac6_1, 
+ # SR_PSAc1=w16charac1_1)
+#summary(Goldberg_Callie_SR$SR_PSAc1)
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+mutate(SR_PAI_1=SR_PSAc1_1+ SR_PSAc2_1+ SR_PSAc3_1+ SR_PSAc4_1+ SR_PSAc5_1+ SR_PSAc6_1+
+SR_PSAa1_1+ SR_PSAa2_1+ SR_PSAa3_1+ SR_PSAa4_1+ SR_PSAa5_1+ SR_PSAa6_1+ SR_PSAa7_1+ SR_PSAa8_1, SR_PSAa9_1+ SR_PSAa10_1, SR_PSAa11_1+
+SR_PSAt1_1+ SR_PSAt2_1, SR_PSAt3_1, SR_PSAt4_1, SR_PSAt5_1+ SR_PSAt6_1, SR_PSAt7_1)
+
+```
+
+#Scale Score
+```{r}
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+mutate(SR_PSAc1_2=0, SR_PSAc2_2=0, SR_PSAc3_2=0, SR_PSAc4_2=0, SR_PSAc5_2=0, SR_PSAc6_2=0,
+SR_PSAa1_2=0, SR_PSAa2_2=0, SR_PSAa3_2=0, SR_PSAa4_2=0, SR_PSAa5_2=0, SR_PSAa6_2=0, SR_PSAa7_2=0, SR_PSAa8_2=0, SR_PSAa9_2=0, SR_PSAa10_2=0, SR_PSAa11_2=0,
+SR_PSAt2_2=0, SR_PSAt2_2=0, SR_PSAt3_2=0, SR_PSAt4_2=0, SR_PSAt5_2=0, SR_PSAt6_2=0, SR_PSAt7_2=0)
+
+#Create binary variables for wether a specific variable has been recorded for Person 1
+#Binary for character
+Goldberg_Callie_SR$SR_PSAc1_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac1_2), 1,0)
+
+Goldberg_Callie_SR$SR_PSAc2_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac2_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAc3_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac3_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAc4_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac4_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAc5_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac5_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAc6_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16charac6_2),1,0)
+
+#Binary for activity
+Goldberg_Callie_SR$SR_PSAa1_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ1_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAa2_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ2_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAa3_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ3_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAa4_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ4_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAa5_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ5_2),1,0)
+
+
+Goldberg_Callie_SR$SR_PSAa6_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ6_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAa7_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ7_2),1,0)
+
+
+Goldberg_Callie_SR$SR_PSAa8_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ8_2),1,0)
+
+
+Goldberg_Callie_SR$SR_PSAa9_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ9_2),1,0)
+
+
+Goldberg_Callie_SR$SR_PSAa10_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ10_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAa11_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16activ11_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt1_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys1_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt2_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys2_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt3_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys3_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt4_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys4_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt5_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys5_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt6_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys6_2),1,0)
+
+Goldberg_Callie_SR$SR_PSAt7_2 <- 
+ifelse(is.na(Goldberg_Callie_SR$w16toys7_2),1,0)
+
+#SR_PSAc3=w16charac3_1,     SR_PSAc4= w16charac4_1, SR_PSAc1=w16charac5_1,     SR_PSAc6= w16charac6_1, 
+ # SR_PSAc1=w16charac1_1)
+#summary(Goldberg_Callie_SR$SR_PSAc1)
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+mutate(SR_PAI_2=SR_PSAc1_2+ SR_PSAc2_2+ SR_PSAc3_2+ SR_PSAc4_2+ SR_PSAc5_2+ SR_PSAc6_2+
+SR_PSAa1_2+ SR_PSAa2_2+ SR_PSAa3_2+ SR_PSAa4_2+ SR_PSAa5_2+ SR_PSAa6_2+ SR_PSAa7_2+ SR_PSAa8_2, SR_PSAa9_2+ SR_PSAa10_2, SR_PSAa11_2+
+SR_PSAt1_2+ SR_PSAt2_2, SR_PSAt3_2, SR_PSAt4_2, SR_PSAt5_2+ SR_PSAt6_2, SR_PSAt7_2)
+
+```
+
+```{r}
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+mutate(SR_PAI=SR_PAI_1+SR_PAI_2)
+
+```
+
+
+```{r}
+ActNum<- 7+6+11
+ActNum<- ActNum*2
+CoupwOneP<- ActNum*0.01
+CoupwTenP<- ActNum*0.05
+CoupwFiveP<- ActNum*0.1
+
+
+```
+
+```{r}
+Original<- nrow(Goldberg_Callie_SR)
+```
+
+```{r}
+Goldberg_Callie_SR_10<-Goldberg_Callie_SR%>%
+  filter(SR_PAI>=CoupwTenP)
+
+NumPartwTen<-nrow(Goldberg_Callie_SR_10)
+
+Goldberg_Callie_SR_5<-Goldberg_Callie_SR%>%
+  filter(SR_PAI>=CoupwFiveP)
+
+NumPartwFive<-nrow(Goldberg_Callie_SR_5)
+
+Goldberg_Callie_SR_1<-Goldberg_Callie_SR%>%
+  filter(SR_PAI>=CoupwOneP)
+
+NumPartwOne<-nrow(Goldberg_Callie_SR_1)
+
+
+
+```
+
+
+```{r}
+PartwTenPer<- NumPartwTen/Original
+PartwTenPer
+
+PartwFivePer<-  NumPartwFive/Original
+PartwFivePer
+
+PartwOnePer<- NumPartwOne/Original
+PartwOnePer
+```
+
+
+
+In our data processing, it was decided that we would work with a scale score and would only exclude participants if the participant answered at least 5% of questions. This would only allow us to keep only a little over half of our paricipants in the study, `r printnum(PartwOnePer)` It was decided that regardless of the scale score partipants would be included in the study.
+
+
 
 ```{r}
 #Call data
@@ -99,409 +361,86 @@ names(select(Goldberg_callie, contains("gender")))
 
 attributes(Goldberg_callie$w16activ10_2)
 attributes(Goldberg_callie$w16activ3_2)
-
 ```
 
 
+To arrive at the model, we worked to standardize information based on gender and the age of the child working of the standardization models found by Garcia et al.
 
+#Child Gender Data
+```{r}
+ summary(Goldberg_Callie_SR$w14chgender_1)
+```
 
-```{r include = FALSE}
-GoldbergCallieFiltered<- Goldberg_callie%>% 
-  filter(!is.na(famid), !is.na(gender_1), !is.na(sexor), !is.na(gender_2),  !is.na(w16toys1_1), !is.na(w16toys1_2), !is.na(w16toys3_1), !is.na(w16toys4_1), !is.na(w16toys5_1), !is.na(w16toys6_1), !is.na(w16toys7_1), 
-!is.na(w16toys2_1), !is.na(w16toys2_2), !is.na(w16toys3_2), !is.na(w16toys4_2), !is.na(w16toys5_2), !is.na(w16toys6_2), !is.na(w16toys7_2) ,
-!is.na(w14HHT1_1), !is.na(w14HHT2_1) , !is.na(w14HHT3_1), !is.na(w14HHT4_1), !is.na(w14HHT5_1), !is.na(w14HHT6_1), !is.na(w14HHT7_1), !is.na(w14HHT8_1), !is.na(w14HHT9_1), !is.na(w14HHT10_1), !is.na(w14HHT11_1), !is.na(w14HHT12_1), !is.na(w14HHT13_1),
-!is.na(w14HHT1_2), !is.na(w14HHT2_2), !is.na(w14HHT3_2), !is.na(w14HHT4_2), !is.na(w14HHT5_2),!is.na(w14HHT6_2), !is.na(w14HHT7_2), !is.na(w14HHT8_2), !is.na(w14HHT9_2), !is.na(w14HHT10_2), !is.na(w14HHT11_2), !is.na(w14HHT12_2), !is.na(w14HHT13_2), 
-!is.na(w16activ1_1), !is.na(w16activ2_1), !is.na(w16activ3_1), !is.na(w16activ4_1), !is.na(w16activ5_1), !is.na(w16activ6_1), !is.na(w16activ7_1), !is.na(w16activ8_1), !is.na(w16activ9_1), !is.na(w16activ10_1), !is.na(w16activ11_1),
-!is.na(w16activ1_2), !is.na(w16activ2_2), !is.na(w16activ3_2), !is.na(w16activ4_2), !is.na(w16activ5_2), !is.na(w16activ6_2), !is.na(w16activ7_2), !is.na(w16activ8_2), !is.na(w16activ9_2), !is.na(w16activ10_2),
-!is.na(w16activ11_2),
-!is.na(w16charac1_1), !is.na(w16charac2_1), !is.na(w16charac3_1), !is.na(w16charac4_1), !is.na(w16charac5_1), !is.na(w16charac6_1), 
+```{r}
+names(select(Goldberg_callie, contains("chage")))
+```
 
-!is.na(w16charac1_2), !is.na(w16charac2_2), !is.na(w16charac3_2), !is.na(w16charac4_2), !is.na(w16charac5_2), !is.na(w16charac6_2)
-   )
+```{r}
 
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+  mutate(w16chagemo=0)
+
+AgeSubset<- Goldberg_Callie_SR%>%
+  select(famid, partnum, w16chagemo_1,w16chagemo_2)
+
+AgeMatrix<- as.matrix(AgeSubset)
+AgeMatrixSub<- AgeMatrix[ ,3:4]
+AgeMeans<- rowMeans(AgeMatrixSub)
+head(AgeMatrixSub)
+#View(AgeMeans)
+AgeMatrix<-cbind(AgeMatrix, AgeMeans)
+AgeMRejoin<-as.data.frame(AgeMatrix)
+#View(AgeMatrix)
+#View(AgeMRejoin)
+
+Goldberg_Callie_SR<-join(AgeMRejoin,Goldberg_Callie_SR)
+#View(Rejoin)
 
 ```
 
 ```{r}
-summary(GoldbergCallieFiltered$w14HHT2_1)
-
-
-```
-
-
-```{r}
-GoldbergCallieFiltered_HT<- GoldbergCallieFiltered
-
-summary(GoldbergCallieFiltered_HT$w14HHT2_1 )
-
-GoldbergCallieFiltered_HT$w14HHT1_1 <- 
-  ifelse(GoldbergCallieFiltered$w14HHT1_1==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT1_1==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT1_1==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT1_1==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT1_1==5,5, 88)))))
-summary(GoldbergCallieFiltered_HT$w14HHT1_2)
-
-  GoldbergCallieFiltered_HT$w14HHT1_2 <- 
-  ifelse(GoldbergCallieFiltered$w14HHT1_2==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT1_2==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT1_2==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT1_2==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT1_2==5,5, 88)))))
-
-
-summary(GoldbergCallieFiltered_HT$w14HHT1_1)
-
-```
-```{r} 
-  GoldbergCallieFiltered_HT$w14HHT2_1 <- 
-  ifelse(GoldbergCallieFiltered$w14HHT2_1==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT2_1==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT2_1==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT2_1==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT2_1==5,5, 88)))))
-
-summary(GoldbergCallieFiltered_HT$w14HHT2_1)
-
-  GoldbergCallieFiltered_HT$w14HHT2_2 <- 
-  ifelse(GoldbergCallieFiltered$w14HHT2_2==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT2_2==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT2_2==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT2_2==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT2_2==5,5, 88)))))
-  
-  summary(GoldbergCallieFiltered_HT$w14HHT2_2)
-
-
-```
-
-
-
-
-```{r} 
-  GoldbergCallieFiltered_HT$w14HHT3_1 <- 
-  ifelse(GoldbergCallieFiltered$w14HHT3_1==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT3_1==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT3_1==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT3_1==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT3_1==5,5, 88)))))
-
-summary(GoldbergCallieFiltered_HT$w14HHT3_1)
-
-  GoldbergCallieFiltered_HT$w14HHT3_2 <- 
-  ifelse(GoldbergCallieFiltered$w14HHT3_2==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT3_2==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT3_2==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT3_2==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT3_2==5,5, 88)))))
-  
-summary(GoldbergCallieFiltered_HT$w14HHT3_2)
-
-
-```
-
-
-
-```{r} 
-  GoldbergCallieFiltered_HT$w14HHT4_1 <- 
-  ifelse(GoldbergCallieFiltered$w14HHT4_1==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT4_1==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT4_1==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT4_1==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT4_1==5,5, 88)))))
-summary(GoldbergCallieFiltered_HT$w14HHT4_1)
-
-GoldbergCallieFiltered_HT$w14HHT4_2 <- 
-ifelse(GoldbergCallieFiltered$w14HHT4_2==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT4_2==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT4_2==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT4_2==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT4_2==5,5, 88)))))
-  
-summary(GoldbergCallieFiltered_HT$w14HHT4_2)
-
-
-```
-
-```{r} 
-GoldbergCallieFiltered_HT$w14HHT5_1 <- 
-ifelse(GoldbergCallieFiltered$w14HHT5_1==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT5_1==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT5_1==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT5_1==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT5_1==5,5, 88)))))
-
-summary(GoldbergCallieFiltered_HT$w14HHT5_1)
-
-GoldbergCallieFiltered_HT$w14HHT5_2 <- 
-ifelse(GoldbergCallieFiltered$w14HHT5_2==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT5_2==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT5_2==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT5_2==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT5_2==5,5, 88)))))
-  
-summary(GoldbergCallieFiltered_HT$w14HHT5_2)
-
-```
-```{r} 
-  GoldbergCallieFiltered_HT$w14HHT6_1 <- 
-  ifelse(GoldbergCallieFiltered$w14HHT6_1==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT6_1==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT6_1==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT6_1==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT6_1==5,5, 88)))))
-
-summary(GoldbergCallieFiltered_HT$w14HHT6_1)
-GoldbergCallieFiltered_HT$w14HHT6_2 <- 
-ifelse(GoldbergCallieFiltered$w14HHT6_2==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT6_2==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT6_2==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT6_2==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT6_2==5,5, 88)))))
-  
-summary(GoldbergCallieFiltered_HT$w14HHT6_2)
-
-
-```
-
-```{r} 
-  GoldbergCallieFiltered_HT$w14HHT7_1 <- 
-  ifelse(GoldbergCallieFiltered$w14HHT7_1==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT7_1==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT7_1==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT7_1==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT7_1==5,5, 88)))))
-
-summary(GoldbergCallieFiltered_HT$w14HHT7_1)
-
-  GoldbergCallieFiltered_HT$w14HHT7_2 <- 
-  ifelse(GoldbergCallieFiltered$w14HHT7_2==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT7_2==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT7_2==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT7_2==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT7_2==5,5, 88)))))
-  
-summary(GoldbergCallieFiltered_HT$w14HHT7_2)
-
-
-```
-
-```{r} 
-  GoldbergCallieFiltered_HT$w14HHT9_1 <- 
-  ifelse(GoldbergCallieFiltered$w14HHT9_1==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT9_1==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT9_1==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT9_1==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT9_1==5,5, 88)))))
-
-summary(GoldbergCallieFiltered_HT$w14HHT9_1)
-
-  GoldbergCallieFiltered_HT$w14HHT9_2 <- 
-  ifelse(GoldbergCallieFiltered$w14HHT9_2==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT9_2==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT9_2==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT9_2==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT9_2==5,5, 88)))))
-  
-summary(GoldbergCallieFiltered_HT$w14HHT9_2)
-
-```
-
-```{r} 
-GoldbergCallieFiltered_HT$w14HHT10_1 <- 
-ifelse(GoldbergCallieFiltered$w14HHT10_1==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT10_1==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT10_1==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT10_1==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT10_1==5,5, 88)))))
-
-summary(GoldbergCallieFiltered_HT$w14HHT10_1)
-
-GoldbergCallieFiltered_HT$w14HHT10_2 <- 
-ifelse(GoldbergCallieFiltered$w14HHT10_2==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT10_2==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT10_2==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT10_2==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT10_2==5,5, 88)))))
-  
-summary(GoldbergCallieFiltered_HT$w14HHT10_2)
-
-```
-
-```{r} 
-GoldbergCallieFiltered_HT$w14HHT11_1 <- 
-ifelse(GoldbergCallieFiltered$w14HHT11_1==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT11_1==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT11_1==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT11_1==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT11_1==5,5, 88)))))
-
-summary(GoldbergCallieFiltered_HT$w14HHT11_1)
-
-GoldbergCallieFiltered_HT$w14HHT11_2 <- 
-ifelse(GoldbergCallieFiltered$w14HHT11_2==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT11_2==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT11_2==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT11_2==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT11_2==5,5, 88)))))
-  
-summary(GoldbergCallieFiltered_HT$w14HHT11_2)
-
-```
-```{r} 
-GoldbergCallieFiltered_HT$w14HHT12_1 <- 
-ifelse(GoldbergCallieFiltered$w14HHT12_1==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT12_1==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT12_1==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT12_1==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT12_1==5,5, 88)))))
-
-summary(GoldbergCallieFiltered_HT$w14HHT12_1)
-
-GoldbergCallieFiltered_HT$w14HHT12_2 <- 
-ifelse(GoldbergCallieFiltered$w14HHT12_2==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT12_2==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT12_2==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT12_2==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT12_2==5,5, 88)))))
-  
-summary(GoldbergCallieFiltered_HT$w14HHT12_2)
-
-```
-
-```{r} 
-GoldbergCallieFiltered_HT$w14HHT13_1 <- 
-ifelse(GoldbergCallieFiltered$w14HHT13_1==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT13_1==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT13_1==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT13_1==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT13_1==5,5, 88)))))
-
-summary(GoldbergCallieFiltered_HT$w14HHT13_1)
-
-GoldbergCallieFiltered_HT$w14HHT13_2 <- 
-ifelse(GoldbergCallieFiltered$w14HHT13_2==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT13_2==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT13_2==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT13_2==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT13_2==5,5, 88)))))
-  
-summary(GoldbergCallieFiltered_HT$w14HHT13_2)
-
-```
-
-
-```{r} 
-GoldbergCallieFiltered_HT$w14HHT14_1 <- 
-ifelse(GoldbergCallieFiltered$w14HHT14_1==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT14_1==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT14_1==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT14_1==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT14_1==5,5, 88)))))
-
-summary(GoldbergCallieFiltered_HT$w14HHT14_1)
-
-GoldbergCallieFiltered_HT$w14HHT14_2 <- 
-ifelse(GoldbergCallieFiltered$w14HHT14_2==1, 1,
-ifelse(GoldbergCallieFiltered$w14HHT14_2==2,2,
-ifelse(GoldbergCallieFiltered$w14HHT14_2==3,3,
-ifelse(GoldbergCallieFiltered$w14HHT14_2==4,4,
-ifelse(GoldbergCallieFiltered$w14HHT14_2==5,5, 88)))))
-  
-summary(GoldbergCallieFiltered_HT$w14HHT14_2)
-
+ summary(Goldberg_Callie_SR$w14chgender_1)
 ```
 
 ```{r}
-#Get the mean of all tasks
-MEAN_ALL_2<-
-  mean(GoldbergCallieFiltered_HT$w14HHT1_2+
-      GoldbergCallieFiltered_HT$w14HHT2_2+
-      GoldbergCallieFiltered_HT$w14HHT3_2+
-      GoldbergCallieFiltered_HT$w14HHT4_2+
-      GoldbergCallieFiltered_HT$w14HHT5_2+
-      GoldbergCallieFiltered_HT$w14HHT6_2+
-      GoldbergCallieFiltered_HT$w14HHT7_2+
-      GoldbergCallieFiltered_HT$w14HHT8_2+
-      GoldbergCallieFiltered_HT$w14HHT9_2+
-      GoldbergCallieFiltered_HT$w14HHT10_2+
-      GoldbergCallieFiltered_HT$w14HHT11_2+
-      GoldbergCallieFiltered_HT$w14HHT12_2+
-      GoldbergCallieFiltered_HT$w14HHT13_2+
-      GoldbergCallieFiltered_HT$w14HHT14_2)
-#
-MEAN_ALL_2
+names(select(Goldberg_callie, contains("chage")))
 ```
 
 ```{r}
-#Get the mean of all tasks
-MEAN_ALL_1<-
-  mean(GoldbergCallieFiltered_HT$w14HHT1_1+
-      GoldbergCallieFiltered_HT$w14HHT2_1+
-      GoldbergCallieFiltered_HT$w14HHT3_1+
-      GoldbergCallieFiltered_HT$w14HHT4_1+
-      GoldbergCallieFiltered_HT$w14HHT5_1+
-      GoldbergCallieFiltered_HT$w14HHT6_1+
-      GoldbergCallieFiltered_HT$w14HHT7_1+
-      GoldbergCallieFiltered_HT$w14HHT8_1+
-      GoldbergCallieFiltered_HT$w14HHT9_1+
-      GoldbergCallieFiltered_HT$w14HHT10_1+
-      GoldbergCallieFiltered_HT$w14HHT11_1+
-      GoldbergCallieFiltered_HT$w14HHT12_1+
-      GoldbergCallieFiltered_HT$w14HHT13_1+
-      GoldbergCallieFiltered_HT$w14HHT14_1)
-#
-MEAN_ALL_1
+
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+  mutate(PAIfin=0)
+
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Standardization
+#RETURN TO!
 ```{r}
-#Get the mean of all tasks
-MEAN_F_1<-
-  mean(GoldbergCallieFiltered_HT$w14HHT1_1+
-      GoldbergCallieFiltered_HT$w14HHT2_1+
-      GoldbergCallieFiltered_HT$w14HHT3_1+
-      GoldbergCallieFiltered_HT$w14HHT4_1+
-        #7 not masculine nor feminine
-    GoldbergCallieFiltered_HT$w14HHT8_1+
-      GoldbergCallieFiltered_HT$w14HHT9_1+
-        #12 not masculine nor feminine
-    GoldbergCallieFiltered_HT$w14HHT13_1+
-      GoldbergCallieFiltered_HT$w14HHT14_1)
-#
-MEAN_M_1<-
-  mean(GoldbergCallieFiltered_HT$w14HHT5_1+
-      GoldbergCallieFiltered_HT$w14HHT6_1+
-      GoldbergCallieFiltered_HT$w14HHT10_1+
-      GoldbergCallieFiltered_HT$w14HHT11_1)
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+  mutate(PAIst=0)
 
-MEAN_F_1
-MEAN_M_1
+Goldberg_Callie_SR$PAIst<- if_else(Goldberg_Callie_SR$w14chgender_1==-1,
+            Goldberg_Callie_SR$PAIfin*1.075-w16chagemo*0.177+0.088 )
+
+Goldberg_Callie_SR$PAIst<- if_else(Goldberg_Callie_SR$w14chgender_1==1,
+                    PAIfin*1.026-w16chagemo*0.218+8.33)
+
 ```
-
-```{r}
-#Get the mean of all tasks
-MEAN_F_2<-
-  mean(GoldbergCallieFiltered_HT$w14HHT1_2+
-      GoldbergCallieFiltered_HT$w14HHT2_2+
-      GoldbergCallieFiltered_HT$w14HHT3_2+
-      GoldbergCallieFiltered_HT$w14HHT4_2+
-        #7 not masculine nor feminine
-    GoldbergCallieFiltered_HT$w14HHT8_2+
-      GoldbergCallieFiltered_HT$w14HHT9_2+
-        #12 not masculine nor feminine
-    GoldbergCallieFiltered_HT$w14HHT13_2+
-      GoldbergCallieFiltered_HT$w14HHT14_2)
-#
-MEAN_M_2<-
-  mean(GoldbergCallieFiltered_HT$w14HHT5_2+
-      GoldbergCallieFiltered_HT$w14HHT6_2+
-      GoldbergCallieFiltered_HT$w14HHT10_2+
-      GoldbergCallieFiltered_HT$w14HHT11_2)
-
-MEAN_F_2
-MEAN_M_2
-```
-
 
 ```{r}
 #Get the mean of all tasks
