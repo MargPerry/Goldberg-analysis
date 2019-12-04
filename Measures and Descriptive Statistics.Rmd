@@ -1,10 +1,6 @@
 ---
-title: "Measures and Descriptive Statistics"
-output: pdf_document
----
-
 title             : "PSY/SDS 364: Measures and Descriptive Statistics"
-shorttitle        : "Measures and Descriptive Statistics"
+shorttitle        : "Measures and Descriptive Statistic"
 
 author: 
   - name          : "Margret Perry"
@@ -25,10 +21,10 @@ affiliation:
 author_note: >
   Smith College
   
-keywords          : "Division of Labor”, Gender Role Development”, “Preschool Activities Inventory", “Gendered Type Play”
-wordcount         : "X"
+keywords          : "Division of Labor, Gender Role Development, Preschool Activities Inventory"
+wordcount         : "321"
 
-bibliography      : ["references.bib","r-references.bib"]
+bibliography      : ["Proposal_references.bib","r-references.bib"]
 
 figsintext        : no
 figurelist        : no
@@ -41,32 +37,21 @@ class             : "man"
 output            : papaja::apa6_pdf
 ---
 
-
-
 ```{r include = FALSE}
 library(papaja)
-#install.packages("psych")
-#install.packages("plyr")
-library(psysds364data)
-library(psych)
-library(devtools)
-library(tidyr)
 library(mosaic)
-library(dplyr)
-library(ggplot2)
-library(plyr)
-```
+library(psych)
+``` 
 
-``` {r create_r-references}
+```{r create_r-references}
 r_refs(file = "r-references.bib")
-my_citation <- cite_r(file = "r-references.bib")
-
+my_citation <- cite_r(file = "references.bib")
 ```
 
 
+# Dataset: Goldberg
 
-
-
+# How does the display of gender roles in children vary with the change in delegation of household responsibilities between parents?
 
 
 
