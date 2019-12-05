@@ -1,6 +1,6 @@
 ---
-title             : "PSY/SDS 364: Resutls Write Up"
-shorttitle        : "Measures and Descriptive Statistic"
+title             : "PSY/SDS 364: Research Project Results Write Up"
+shorttitle        : "Results Write Up"
 
 author: 
   - name          : "Margret Perry"
@@ -41,15 +41,6 @@ output            : papaja::apa6_pdf
 library(papaja)
 library(mosaic)
 library(psych)
-```
-
-```{r create_r-references}
-r_refs(file = "r-references.bib")
-my_citation <- cite_r(file = "MDSreferences.bib")
-```
-
-
-```{r}
 #install.packages("psych")
 #install.packages("plyr")
 library(psysds364data)
@@ -59,7 +50,19 @@ library(mosaic)
 library(dplyr)
 library(ggplot2)
 library(plyr)
+library(papaja)
+library(psych)
 ```
+
+
+```{r create_r-references, include = FALSE}
+r_refs(file = "r-references.bib")
+my_citation <- cite_r(file = "MDSreferences.bib")
+```
+# Dataset: Goldberg
+
+# Question: How does the display of gender roles in children vary with the change in delegation of household responsibilities between parents?
+
 
 ```{r, include=FALSE}
 # 
@@ -69,9 +72,7 @@ library(plyr)
 
 
 ```
-# Dataset: Goldberg
 
-# Question: How does the display of gender roles in children vary with the change in delegation of household responsibilities between parents?
 
 #Analysis Strategy Section+Hypothesis
 
@@ -88,17 +89,17 @@ arrived at the model.
 
 Data Processing
 
-#ScaleScore
+#Scale Score
 
 
 
-```{r}
+```{r, include = FALSE}
 data("Goldberg_callie")
 Goldberg_Callie_2<- Goldberg_callie
 
 ```
 
-```{r}
+```{r, include = FALSE}
 #Scale Score
 Goldberg_Callie_SR<- Goldberg_Callie_2%>%
 mutate(SR_PSAc1_1=0, SR_PSAc2_1=0, SR_PSAc3_1=0, SR_PSAc4_1=0, SR_PSAc5_1=0, SR_PSAc6_1=0,
@@ -194,8 +195,8 @@ SR_PSAt1_1+ SR_PSAt2_1, SR_PSAt3_1, SR_PSAt4_1, SR_PSAt5_1+ SR_PSAt6_1, SR_PSAt7
 
 ```
 
+```{r, include = FALSE}
 #Scale Score
-```{r}
 Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
 mutate(SR_PSAc1_2=0, SR_PSAc2_2=0, SR_PSAc3_2=0, SR_PSAc4_2=0, SR_PSAc5_2=0, SR_PSAc6_2=0,
 SR_PSAa1_2=0, SR_PSAa2_2=0, SR_PSAa3_2=0, SR_PSAa4_2=0, SR_PSAa5_2=0, SR_PSAa6_2=0, SR_PSAa7_2=0, SR_PSAa8_2=0, SR_PSAa9_2=0, SR_PSAa10_2=0, SR_PSAa11_2=0,
@@ -290,14 +291,14 @@ SR_PSAt1_2+ SR_PSAt2_2, SR_PSAt3_2, SR_PSAt4_2, SR_PSAt5_2+ SR_PSAt6_2, SR_PSAt7
 
 ```
 
-```{r}
+```{r, include = FALSE}
 Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
 mutate(SR_PAI=SR_PAI_1+SR_PAI_2)
 
 ```
 
 
-```{r}
+```{r, include = FALSE}
 ActNum<- 7+6+11
 ActNum<- ActNum*2
 CoupwOneP<- ActNum*0.01
@@ -307,11 +308,11 @@ CoupwFiveP<- ActNum*0.1
 
 ```
 
-```{r}
+```{r, include = FALSE}
 Original<- nrow(Goldberg_Callie_SR)
 ```
 
-```{r}
+```{r, include = FALSE}
 Goldberg_Callie_SR_10<-Goldberg_Callie_SR%>%
   filter(SR_PAI>=CoupwTenP)
 
@@ -332,7 +333,7 @@ NumPartwOne<-nrow(Goldberg_Callie_SR_1)
 ```
 
 
-```{r}
+```{r, include = FALSE}
 PartwTenPer<- NumPartwTen/Original
 PartwTenPer
 
@@ -349,7 +350,7 @@ In our data processing, it was decided that we would work with a scale score and
 
 
 
-```{r}
+```{r, include = FALSE}
 #Call data
 data("Goldberg_callie")
 
@@ -369,15 +370,15 @@ attributes(Goldberg_callie$w16activ3_2)
 To arrive at the model, we worked to standardize information based on gender and the age of the child working of the standardization models found by Garcia et al.
 
 #Child Gender Data
-```{r}
+```{r, include = FALSE}
  summary(Goldberg_Callie_SR$w14chgender_1)
 ```
 
-```{r}
+```{r, include = FALSE}
 names(select(Goldberg_callie, contains("chage")))
 ```
 
-```{r}
+```{r,include = FALSE}
 
 Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
   mutate(w16chagemo=0)
@@ -400,15 +401,15 @@ Goldberg_Callie_SR<-join(AgeMRejoin,Goldberg_Callie_SR)
 
 ```
 
-```{r}
+```{r, include = FALSE}
  summary(Goldberg_Callie_SR$w14chgender_1)
 ```
 
-```{r}
+```{r, include = FALSE}
 names(select(Goldberg_callie, contains("chage")))
 ```
 
-```{r}
+```{r, include = FALSE}
 
 Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
   mutate(PAIfin=0)
@@ -420,7 +421,7 @@ Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
 
 
 
-```{r}
+```{r, include = FALSE}
 #Get the mean of all tasks
 
 
@@ -443,7 +444,7 @@ Hypothesis 3:
 We hypothesize that the division of labor will be associated with having a larger effect on whether a child display displays gender-typed play than the family structure.
 
 Defining our models
-```{r}
+```{r, include = FALSE}
 
 
 ```
@@ -459,13 +460,13 @@ Defining our models
 
 round(coef,#decminal)
 
-```{r}
+```{r, include = FALSE}
 
 
 
 ```
 
-```{r}
+```{r, include = FALSE}
  AgeSubset<- Goldberg_Callie_SR%>%
    select(famid, partnum,w16chagemo_1,w16chagemo_2)
 # # 
@@ -474,7 +475,7 @@ head(AgeSubset)
 
 
 
-```{r}
+```{r, include = FALSE}
 AgeSubsetMatrix<- as.matrix(AgeSubset)
 AgeSubsetMatrix<- AgeSubsetMatrix[ ,3:4]
 AgeMeans<-colMeans(AgeMatrixSub)
@@ -491,7 +492,7 @@ Goldberg_Callie_SR<-join(AgeMRejoin,Goldberg_Callie_SR)
 ```
 
 
-```{r}
+```{r, include = FALSE}
 
 
 goldberg_psai<- Goldberg_callie %>%
@@ -520,7 +521,7 @@ hw_a<- alpha(hw)
 #cronbach(goldberg_hw)
 ```
 
-```{r}
+```{r, include = FALSE}
 
 Goldberg_callie_SR_2<-goldberg_psai%>%
   mutate(pai= round((w16rt2+ w16rt4+ w16rt7 + w16ra1 + w16ra2 + w16ra3 + w16ra6 + w16ra9 + w16ra11 + w16rc4 + w16rc5 + w16rc6 + w16charac1_1+ w16charac2_1+ w16charac3_1+ w16toys1_1+ w16toys3_1 + w16toys5_1+ w16toys6_1+ w16activ4_1+ w16activ5_1+ w16activ7_1+ w16activ8_1+ w16activ10_1) /23))
@@ -528,14 +529,14 @@ Goldberg_callie_SR_2<-goldberg_psai%>%
 
 ```
 
-```{r}
+```{r, include = FALSE}
 #PSAI Final score
 
 Goldberg_Callie_SR$w16PSAI <- rowMeans(goldberg_psai %>% select(w16rt2, w16rt4, w16rt7, w16ra1, w16ra2, w16ra3, w16ra6, w16ra9, w16ra11, w16rc4, w16rc5, w16rc6, w16charac1_1, w16charac2_1, w16charac3_1, w16toys1_1, w16toys3_1, w16toys5_1, w16toys6_1, w16activ4_1, w16activ5_1, w16activ7_1, w16activ8_1, w16activ10_1), na.rm = TRUE)
 
 ```
 
-```{r}
+```{r, include = FALSE}
 
 Goldberg_Callie_SR<-Goldberg_Callie_SR%>%
   mutate(PAIst= ifelse(Goldberg_Callie_SR$w14chgender_1==-1,
@@ -549,7 +550,7 @@ Goldberg_Callie_SR<-Goldberg_Callie_SR%>%
 ```
 
 
-```{r}
+```{r, include = FALSE}
 Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
   mutate(HHT_HouseMean= rowMeans(Goldberg_Callie_SR
           %>% select(w14HHT1_1, w14HHT2_1, w14HHT3_1, w14HHT4_1, w14HHT5_1, w14HHT6_1,w14HHT7_1, w14HHT8_1, w14HHT9_1, w14HHT10_1,  w14HHT11_1, w14HHT12_1, w14HHT13_1, w14HHT14_1,
@@ -558,7 +559,7 @@ w14HHT1_2, w14HHT2_2, w14HHT3_2, w14HHT4_2, w14HHT5_2, w14HHT6_2,w14HHT7_2, w14H
 ```
 
 
-```{r}
+```{r, include = FALSE}
 Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
   mutate(EqualPercp= ifelse(HHT_HouseMean==3, 1, 0))
 
@@ -566,16 +567,12 @@ Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
 
 
 
-```{r}
-
-
+```{r,include = FALSE}
 attributes(Goldberg_callie$w14HHT13_2)
 ```
 
 
-
-#Initial Model- PSAI Score vs. Household Division of Labor
-```{r PSAI Score vs. Household Dvision of Labor}
+```{r, include = FALSE}
 L1<- lm(PAIst~HHT_HouseMean, data=Goldberg_Callie_SR, na.action = na.exclude)
  
 ```
@@ -586,42 +583,69 @@ L1<- lm(PAIst~HHT_HouseMean, data=Goldberg_Callie_SR, na.action = na.exclude)
 summary(L1)
 ```
 
-#Model 2- PSAI Score vs. Household Division of Labor Equality
 
-```{r}
-L2<- lm(PAIst~EqualPercp+, data=Goldberg_Callie_SR, na.action = na.exclude)
- 
-```
-```{r}
-anova(L1)
-
+```{r, include = FALSE}
+L2<- lm(PAIst~EqualPercp, data=Goldberg_Callie_SR, na.action = na.exclude)
 ```
 
 
-```{r}
+```{r, include = FALSE}
 summary(L2)
+```
+
+```{r Figure 1}
+#plot(L1)
+
+ggplot(data = Goldberg_Callie_SR, aes(x =HHT_HouseMean, y= PAIst ))+
+   geom_point()+
+   labs(title="Gendered Play in Children vs. Household Divsion \n of Labour", y="PAI Score (with 0 being most Feminine \n & 5 being  Masculine Typed Play)", x="Household Tasks Distribution" )+
+   geom_abline(slope=-0.9515, intercept=-3.1734, col="blue")
+  
 
 ```
 
-```{r}
-anova(L2)
+```{r Figure 2}
+ggplot(data = Goldberg_Callie_SR, aes(x =EqualPercp, y= PAIst ))+
+   geom_point()+
+   labs(title="Gendered Play in Children vs. Equality of Household Divsion of Labour", 
+    y="PAI Score (with 0 being most Feminine \n & 5  being  Masculine Typed Play)", 
+    x="Equality in Division of Labor \n Household Tasks  (with 1 being equal and 0 being not equal)" )+
+   geom_abline(slope=-1.3440, intercept=-6.0979 , col="blue")
 
 ```
 
-#Model 3- PSAI Score vs. Household Division of Labor for families with Heterosexual and Homosexual Parents
-```{r}
-L3<- lm(PAIst~HHT_HouseMean+sexor, data=Goldberg_Callie_SR, na.action = na.exclude)
- 
-```
+```{r Figure 3}
+#Intially graph does -1, 1 for sexor order, -1 corresponds to het & 1 corresponds to ss
+ggplot(data = Goldberg_Callie_SR, aes(x =HHT_HouseMean, y= PAIst , color=as.factor(sexor)))+
+   geom_point()+
+   labs(title="Gendered Play in Children vs. Household Divsion \n of Labour", y="PAI Score (with 0 being most Feminine \n & 5 being  Masculine Typed Play)", x="Household Tasks Distribution", legend="Parent Sexual Orientation" )+
+  geom_abline(slope=-0.8393 , intercept=-3.5837, col="black")+
+    geom_abline(slope=-0.8393 , intercept=-3.5837+0.2331 , col="blue")+
+  scale_color_discrete(name="Parent Sexual Orientation",labels=c("Heterosexual", "Same-Sex"))
+#scale_color_manual(values=c("blue", "white"), labels= c("Heterosexual Parents", "Homosexual Parents"))
 
 
-```{r}
-summary(L3)
-
-```
-
-```{r}
-anova(L3)
 
 ```
+```{r Figure 3}
+#Intially graph does -1, 1 for sexor order, -1 corresponds to het & 1 corresponds to ss
+ggplot(data = Goldberg_Callie_SR, aes(x =HHT_HouseMean, y= PAIst , color=as.factor(sexor)))+
+   geom_point()+
+  facet_grid(~sexor, margins=TRUE)+
+   labs(title="Gendered Play in Children vs. Household Divsion \n of Labour", y="PAI Score (with 0 being most Feminine \n & 5 being  Masculine Typed Play)", x="Household Tasks Distribution", legend="Parent Sexual Orientation" )+
+  geom_abline(slope=-0.9515, intercept=-3.1734, col="blue")+
+  scale_color_discrete(name="Parent Sexual Orientation",labels=c("Heterosexual", "Same-Sex"))
+#scale_color_manual(values=c("blue", "white"), labels= c("Heterosexual Parents", "Homosexual Parents"))
+
+
+
+```
+
+\newpage
+
+# References
+
+
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
 
