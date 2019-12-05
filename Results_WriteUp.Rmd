@@ -61,6 +61,10 @@ library(ggplot2)
 library(plyr)
 ```
 
+#Analysis Strategy
+
+
+
 ```{r, include=FALSE}
 # 
 # Goldberg_callie_1<- Goldberg_callie_na%>%
@@ -71,11 +75,11 @@ library(plyr)
 ```
 # Dataset: Goldberg
 
-# Question: How does the display of gender roles in children vary with the change in delegation of household responsibilities between parents?
+# Question:We hypothesized that the division of household labor medigates the affect of sexual orientation on gender display in preschool aged childern.
 
 #Analysis Strategy Section+Hypothesis
 
-#Remind reaader of resrach question
+#Remind reader of research question
 Our resaerch seeks to look out the question of how the display of gender roles in children vary with the change in delegation of household responsibilities between parents?
 
 
@@ -92,13 +96,13 @@ Data Processing
 
 
 
-```{r}
+```{rinclude=FALSE}
 data("Goldberg_callie")
 Goldberg_Callie_2<- Goldberg_callie
 
 ```
 
-```{r}
+```{r include=FALSE}
 #Scale Score
 Goldberg_Callie_SR<- Goldberg_Callie_2%>%
 mutate(SR_PSAc1_1=0, SR_PSAc2_1=0, SR_PSAc3_1=0, SR_PSAc4_1=0, SR_PSAc5_1=0, SR_PSAc6_1=0,
@@ -195,7 +199,7 @@ SR_PSAt1_1+ SR_PSAt2_1, SR_PSAt3_1, SR_PSAt4_1, SR_PSAt5_1+ SR_PSAt6_1, SR_PSAt7
 ```
 
 #Scale Score
-```{r}
+```{r include=FALSE}
 Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
 mutate(SR_PSAc1_2=0, SR_PSAc2_2=0, SR_PSAc3_2=0, SR_PSAc4_2=0, SR_PSAc5_2=0, SR_PSAc6_2=0,
 SR_PSAa1_2=0, SR_PSAa2_2=0, SR_PSAa3_2=0, SR_PSAa4_2=0, SR_PSAa5_2=0, SR_PSAa6_2=0, SR_PSAa7_2=0, SR_PSAa8_2=0, SR_PSAa9_2=0, SR_PSAa10_2=0, SR_PSAa11_2=0,
@@ -416,37 +420,19 @@ Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
 ```
 
 
-
-
-
-
-```{r}
-#Get the mean of all tasks
-
-
-```
-
-
-
 #Models|
 
 <p> 
 Hypothesis 1: 
-We hypothesized that households with an unequal distribution of labor will be associated with whether a child displays gendered play.
+We hypothesized that the division of household labor medigates the affect of sexual orientation on gender display in preschool aged childern.
 
 <p> 
 Hypothesis 2: 
-We hypothesize that unequal division of labor in heterosexual couples will have a greater effect on gendered play in children than the labor disruption in same-sex couples.
+We hypothesize that unequal division of labor in heterosexual couples will have a greater effect on gender play in children than the labor disruption in same-sex couples.
 
 <p> 
 Hypothesis 3:  
 We hypothesize that the division of labor will be associated with having a larger effect on whether a child display displays gender-typed play than the family structure.
-
-Defining our models
-```{r}
-
-
-```
 
 
 #Main Result Section
@@ -459,11 +445,6 @@ Defining our models
 
 round(coef,#decminal)
 
-```{r}
-
-
-
-```
 
 ```{r}
  AgeSubset<- Goldberg_Callie_SR%>%
@@ -491,42 +472,8 @@ Goldberg_Callie_SR<-join(AgeMRejoin,Goldberg_Callie_SR)
 ```
 
 
-```{r}
 
 
-goldberg_psai<- Goldberg_callie %>%
-  select(w16activ1_1, w16activ2_1, w16activ3_1,w16activ4_1, w16activ5_1, w16activ6_1, w16activ7_1, w16activ8_1,w16activ9_1, w16activ10_1, w16activ11_1, w16toys1_1, w16toys2_1, w16toys3_1, w16toys4_1, w16toys5_1, w16toys6_1, w16toys7_1, w16charac1_1, w16charac2_1, w16charac3_1, w16charac4_1, w16charac5_1, w16charac6_1) %>%
-  
-  mutate(w16rt2= 6- w16toys2_1,w16rt4 = 6- w16toys4_1, w16rt7 = 6- w16toys7_1,w16ra1 = 6- w16activ1_1, w16ra2 = 6- w16activ2_1, w16ra3 = 6- w16activ3_1, w16ra6 = 6- w16activ6_1, w16ra9 = 6- w16activ9_1, w16ra11 = 6- w16activ11_1,w16rc4 = 6- w16charac4_1,w16rc5 = 6- w16charac5_1,w16rc6 = 6- w16charac6_1)
-
-psai_alpha <- goldberg_psai %>%
-  select(w16rt2, w16rt4, w16rt7, w16ra1, w16ra2, w16ra3, w16ra6, w16ra9, w16ra11, w16rc4, w16rc5, w16rc6, w16charac1_1, w16charac2_1, w16charac3_1, w16toys1_1, w16toys3_1, w16toys5_1, w16toys6_1, w16activ4_1, w16activ5_1, w16activ7_1, w16activ8_1, w16activ10_1)
-
-psai_alpha_0 <- psai_alpha %>%
-  mutate(pai= round((w16rt2+ w16rt4+ w16rt7 + w16ra1 + w16ra2 + w16ra3 + w16ra6 + w16ra9 + w16ra11 + w16rc4 + w16rc5 + w16rc6 + w16charac1_1+ w16charac2_1+ w16charac3_1+ w16toys1_1+ w16toys3_1 + w16toys5_1+ w16toys6_1+ w16activ4_1+ w16activ5_1+ w16activ7_1+ w16activ8_1+ w16activ10_1) /23))
-
-
-
-Goldberg_callie$w16PSAI <- rowMeans(goldberg_psai %>% select(w16rt2, w16rt4, w16rt7, w16ra1, w16ra2, w16ra3, w16ra6, w16ra9, w16ra11, w16rc4, w16rc5, w16rc6, w16charac1_1, w16charac2_1, w16charac3_1, w16toys1_1, w16toys3_1, w16toys5_1, w16toys6_1, w16activ4_1, w16activ5_1, w16activ7_1, w16activ8_1, w16activ10_1), na.rm = TRUE)
-
-#cronbach(psai_alpha)
-
-
-goldberg_hw<- Goldberg_callie%>%
-  select(w14HHT1_1:w14HHT13_1)
-hw<- corr.test(goldberg_hw)$r
-hw
-hw_a<- alpha(hw)
-#cronbach(goldberg_hw)
-```
-
-```{r}
-
-Goldberg_callie_SR_2<-goldberg_psai%>%
-  mutate(pai= round((w16rt2+ w16rt4+ w16rt7 + w16ra1 + w16ra2 + w16ra3 + w16ra6 + w16ra9 + w16ra11 + w16rc4 + w16rc5 + w16rc6 + w16charac1_1+ w16charac2_1+ w16charac3_1+ w16toys1_1+ w16toys3_1 + w16toys5_1+ w16toys6_1+ w16activ4_1+ w16activ5_1+ w16activ7_1+ w16activ8_1+ w16activ10_1) /23))
-
-
-```
 
 ```{r}
 #PSAI Final score
@@ -538,13 +485,13 @@ Goldberg_Callie_SR$w16PSAI <- rowMeans(goldberg_psai %>% select(w16rt2, w16rt4, 
 ```{r}
 
 Goldberg_Callie_SR<-Goldberg_Callie_SR%>%
-  mutate(PAIst= ifelse(Goldberg_Callie_SR$w14chgender_1==-1,
+  mutate(w16PSAI = ifelse(Goldberg_Callie_SR$w14chgender_1==-1,
             Goldberg_Callie_SR$w16PSAI*1.075-Goldberg_Callie_SR$AgeMeans*0.177+0.088 ,
  ifelse(Goldberg_Callie_SR$w14chgender_1==1,
            Goldberg_Callie_SR$w16PSAI*1.026-Goldberg_Callie_SR$AgeMeans*0.218+8.33, "NA")))
 
 Goldberg_Callie_SR<-Goldberg_Callie_SR%>%
-  mutate(PAIst= as.numeric(PAIst))
+  mutate(w16PSAI = as.numeric(w16PSAI))
 
 ```
 
@@ -568,60 +515,49 @@ Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
 
 ```{r}
 
-
+count(Goldberg_Callie_SR$EqualPercp)
 attributes(Goldberg_callie$w14HHT13_2)
 ```
 
 
 
 #Initial Model- PSAI Score vs. Household Division of Labor
-```{r PSAI Score vs. Household Dvision of Labor}
-L1<- lm(PAIst~HHT_HouseMean, data=Goldberg_Callie_SR, na.action = na.exclude)
- 
-```
-
-
-
-```{r}
+```{r include=FALSE}
+L1<- lm(w16PSAI~HHT_HouseMean, data=Goldberg_Callie_SR, na.action = na.exclude)
 summary(L1)
 ```
 
-#Model 2- PSAI Score vs. Household Division of Labor Equality
-
-```{r}
-L2<- lm(PAIst~EqualPercp+, data=Goldberg_Callie_SR, na.action = na.exclude)
- 
-```
+#Figure 1
 ```{r}
 anova(L1)
-
+summary(L1)
 ```
+#Model 2- PSAI Score vs. Household Division of Labor Equality
 
+```{r include=FALSE}
+L2<- lm(w16PSAI~EqualPercp, data=Goldberg_Callie_SR, na.action = na.exclude)
+ 
 
-```{r}
 summary(L2)
-
 ```
-
+#Figure2
 ```{r}
 anova(L2)
 
 ```
-
-#Model 3- PSAI Score vs. Household Division of Labor for families with Heterosexual and Homosexual Parents
-```{r}
-L3<- lm(PAIst~HHT_HouseMean+sexor, data=Goldberg_Callie_SR, na.action = na.exclude)
+#Model 3- PSAI Score vs. Parental makeup 
+```{r include=FALSE}
+L3<- lm(w16PSAI~ sexor, data=Goldberg_Callie_SR, na.action = na.exclude)
  
-```
 
-
-```{r}
 summary(L3)
-
 ```
-
+#Figure 3
 ```{r}
 anova(L3)
 
 ```
+#Main Results 
+ Figure 1 through 3 are the anova tables for our diffent level of models. None showed statistically significant results. 
+  If the there is no signifcant influance of sexual orentation on gender displa, with a b= 0.25, SE= .297, p= 0.4, and neither was the distruption of Household chores with a b= -0.951, SE= 1.45, and a p=.5. There possible flaws in our model that could lead to such a high value mainly that they are muilt-level as they should be with dyad
 
