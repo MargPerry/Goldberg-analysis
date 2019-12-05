@@ -408,8 +408,6 @@ Goldberg_Callie_SR<-join(AgeMRejoin,Goldberg_Callie_SR)
 names(select(Goldberg_callie, contains("chage")))
 ```
 
-<<<<<<< HEAD
-=======
 ```{r}
 
 Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
@@ -575,7 +573,9 @@ attributes(Goldberg_callie$w14HHT13_2)
 ```
 
 
-```{r}
+
+#Initial Model- PSAI Score vs. Household Division of Labor
+```{r PSAI Score vs. Household Dvision of Labor}
 L1<- lm(PAIst~HHT_HouseMean, data=Goldberg_Callie_SR, na.action = na.exclude)
  
 ```
@@ -586,10 +586,15 @@ L1<- lm(PAIst~HHT_HouseMean, data=Goldberg_Callie_SR, na.action = na.exclude)
 summary(L1)
 ```
 
+#Model 2- PSAI Score vs. Household Division of Labor Equality
 
 ```{r}
 L2<- lm(PAIst~EqualPercp+, data=Goldberg_Callie_SR, na.action = na.exclude)
  
+```
+```{r}
+anova(L1)
+
 ```
 
 
@@ -599,6 +604,24 @@ summary(L2)
 ```
 
 ```{r}
-
+anova(L2)
 
 ```
+
+#Model 3- PSAI Score vs. Household Division of Labor for families with Heterosexual and Homosexual Parents
+```{r}
+L3<- lm(PAIst~HHT_HouseMean+sexor, data=Goldberg_Callie_SR, na.action = na.exclude)
+ 
+```
+
+
+```{r}
+summary(L3)
+
+```
+
+```{r}
+anova(L3)
+
+```
+
