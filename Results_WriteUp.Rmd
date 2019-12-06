@@ -5,7 +5,7 @@ shorttitle        : "Results Write Up"
 author: 
   - name          : "Margret Perry"
     affiliation   : "1"
-  - name          : "Callie Selvin"
+  - name          : "Callie Slevin"
     affliation    : "2"
   - name          : "Isabel Zamudio-Moore"
     affliation    : "3"
@@ -70,10 +70,10 @@ my_citation <- cite_r(file = "MDSreferences.bib")
 #Analysis Strategy Section+Hypothesis
 
 #Remind reader of research question
-Our resaerch seeks to look out the question of how the display of gender roles in children vary with the change in delegation of household responsibilities between parents?
+Our research seeks to look out the question of how the display of gender roles in children vary with the change in delegation of household responsibilities between parents?
 
 
-
+ 
 
 2. Dyadic Data Analaysis
 3. Take a figure of this.
