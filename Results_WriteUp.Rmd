@@ -553,7 +553,7 @@ Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
 
 
 
-<<<<<<< HEAD
+
 ```{r}
 
 count(Goldberg_Callie_SR$EqualPercp)
