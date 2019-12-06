@@ -557,9 +557,7 @@ Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
 ```{r}
 
 count(Goldberg_Callie_SR$EqualPercp)
-=======
-```{r,include = FALSE}
->>>>>>> ff375aed6a57903423256ce5eba8453e55292718
+
 attributes(Goldberg_callie$w14HHT13_2)
 ```
 
@@ -576,19 +574,7 @@ anova(L1)
 summary(L1)
 ```
 
-#Model 2- PSAI Score vs. Household Division of Labor Equality
 
-```{r include=FALSE}
-L2<- lm(w16PSAI~EqualPercp, data=Goldberg_Callie_SR, na.action = na.exclude)
- 
-
-summary(L2)
-```
-#Figure2
-```{r}
-anova(L2)
-
-```
 #Model 3- PSAI Score vs. Parental makeup 
 ```{r include=FALSE}
 L3<- lm(w16PSAI~ sexor, data=Goldberg_Callie_SR, na.action = na.exclude)
@@ -596,19 +582,11 @@ L3<- lm(w16PSAI~ sexor, data=Goldberg_Callie_SR, na.action = na.exclude)
 
 summary(L3)
 ```
-#Figure 3
+
 ```{r}
-anova(L3)
+L4<- lm(HHT_HouseMean ~ sexor, data= Goldberg_Callie_SR, na.action = na.exclude )
 
-```
-
-```{r, include = FALSE}
-L2<- lm(PAIst~EqualPercp, data=Goldberg_Callie_SR, na.action = na.exclude)
-```
-
-
-```{r, include = FALSE}
-summary(L2)
+summary(L4)
 ```
 
 ```{r Figure 1}
