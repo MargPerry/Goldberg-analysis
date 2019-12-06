@@ -73,7 +73,7 @@ my_citation <- cite_r(file = "MDSreferences.bib")
 Our resaerch seeks to look out the question of how the display of gender roles in children vary with the change in delegation of household responsibilities between parents?
 
 
-
+ 
 
 2. Dyadic Data Analaysis
 3. Take a figure of this.
