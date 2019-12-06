@@ -575,18 +575,17 @@ summary(L1)
 ```
 
 
-#Model 3- PSAI Score vs. Parental makeup 
-```{r include=FALSE}
-L3<- lm(w16PSAI~ sexor, data=Goldberg_Callie_SR, na.action = na.exclude)
+#Model 2- PSAI Score vs. Parental makeup 
+```{r}
+L2<- lm(w16PSAI~ sexor, data=Goldberg_Callie_SR, na.action = na.exclude)
  
 
-summary(L3)
+summary(L2)
 ```
 
+#Model 3
 ```{r}
-L4<- lm(HHT_HouseMean ~ sexor, data= Goldberg_Callie_SR, na.action = na.exclude )
-
-summary(L4)
+ggplot(data = Goldberg_Callie_SR, aes(x= sexor, y =HHT_HouseMean))+geom_point()+labs(title="Divsion of Labour and Parental Gender Composition", y="Household Tasks Distribution", x="Parental Gender Composition" )
 ```
 
 ```{r Figure 1}
