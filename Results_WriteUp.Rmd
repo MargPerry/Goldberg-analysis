@@ -602,6 +602,9 @@ summary(L2)
 
 #Model 3
 ```{r}
+
+favstats(w16PSAI_1 ~as.factor(group)|as.factor(w14chgender_1), data= Goldberg_Callie_SR)
+
 L3<- gls(w16PSAI_1~as.factor(group) + HHT_HouseMean_1+ HHT_HouseMean_2+ as.factor(w14chgender_1),
          data=Goldberg_Callie_SR,
          correlation = corCompSymm(form=~1|famid),
