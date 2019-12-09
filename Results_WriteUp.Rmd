@@ -38,20 +38,18 @@ output            : papaja::apa6_pdf
 ---
 
 ```{r include = FALSE}
-library(papaja)
+#library(papaja)
 library(mosaic)
 library(psych)
 #install.packages("psych")
 #install.packages("plyr")
-library(psysds364data)
+#library(psysds364data)
 library(devtools)
 library(tidyr)
-library(mosaic)
 library(dplyr)
 library(ggplot2)
 library(plyr)
-library(papaja)
-library(psych)
+library(nlme)
 ```
 
 #Analysis Strategy
@@ -414,11 +412,7 @@ Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
 ```
 
 
-```{r, include = FALSE}
-#Get the mean of all tasks
 
-
-```
 
 
 
@@ -513,22 +507,36 @@ hw_a<- alpha(hw)
 
 ```{r, include = FALSE}
 
-Goldberg_callie_SR_2<-goldberg_psai%>%
-  mutate(pai= round((w16rt2+ w16rt4+ w16rt7 + w16ra1 + w16ra2 + w16ra3 + w16ra6 + w16ra9 + w16ra11 + w16rc4 + w16rc5 + w16rc6 + w16charac1_1+ w16charac2_1+ w16charac3_1+ w16toys1_1+ w16toys3_1 + w16toys5_1+ w16toys6_1+ w16activ4_1+ w16activ5_1+ w16activ7_1+ w16activ8_1+ w16activ10_1) /23))
-
 #PSAI Final score
 
-Goldberg_Callie_SR$w16PSAI <- rowMeans(goldberg_psai %>% select(w16rt2, w16rt4, w16rt7, w16ra1, w16ra2, w16ra3, w16ra6, w16ra9, w16ra11, w16rc4, w16rc5, w16rc6, w16charac1_1, w16charac2_1, w16charac3_1, w16toys1_1, w16toys3_1, w16toys5_1, w16toys6_1, w16activ4_1, w16activ5_1, w16activ7_1, w16activ8_1, w16activ10_1), na.rm = TRUE)
+Goldberg_Callie_SR$w16PSAI_1 <- rowMeans(goldberg_psai %>% select(w16rt2, w16rt4, w16rt7, w16ra1, w16ra2, w16ra3, w16ra6, w16ra9, w16ra11, w16rc4, w16rc5, w16rc6, w16charac1_1, w16charac2_1, w16charac3_1, w16toys1_1, w16toys3_1, w16toys5_1, w16toys6_1, w16activ4_1, w16activ5_1, w16activ7_1, w16activ8_1, w16activ10_1), na.rm = TRUE)
+
+Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
+  mutate(w16rt2_2= 6- w16toys2_2, w16rt4_2 = 6- w16toys4_2, w16rt7_2 = 6- w16toys7_2, w16ra1_2 = 6- w16activ1_2, w16ra2_2 = 6- w16activ2_2, w16ra3_2= 6- w16activ3_2, w16ra6_2 = 6- w16activ6_2, w16ra9_2 = 6- w16activ9_2, w16ra11_2= 6- w16activ11_2, w16rc4_2 = 6- w16charac4_2, w16rc5_2 = 6- w16charac5_2, w16rc6_2 = 6- w16charac6_2)
+
+
+Goldberg_Callie_SR$w16PSAI_2 <- rowMeans(select(Goldberg_Callie_SR, w16rt2_2, w16rt4_2, w16rt7_2, w16ra1_2, w16ra2_2, w16ra3_2, w16ra6_2, w16ra9_2, w16ra11_2, w16rc4_2, w16rc5_2, w16rc6_2, w16charac1_2, w16charac2_2, w16charac3_2, w16toys1_2, w16toys3_2, w16toys5_2, w16toys6_2, w16activ4_2, w16activ5_2, w16activ7_2, w16activ8_2, w16activ10_2), na.rm = TRUE)
 
 ```
 
+
+```{r}
+Goldberg_Callie_SR %>%
+  group_by(w14chgender_1) %>%
+  summarise(mean = mean(w16PSAI_1, na.rm = TRUE))
+
+library(mosaic) 
+favstats(w16PSAI_1 ~ w14chgender_1, data = Goldberg_Callie_SR)
+```
+
+
 ```{r, include = FALSE}
 
-Goldberg_Callie_SR<-Goldberg_Callie_SR%>%
-  mutate(w16PSAI = ifelse(Goldberg_Callie_SR$w14chgender_1==-1,
-            Goldberg_Callie_SR$w16PSAI*1.075-Goldberg_Callie_SR$AgeMeans*0.177+0.088 ,
- ifelse(Goldberg_Callie_SR$w14chgender_1==1,
-           Goldberg_Callie_SR$w16PSAI*1.026-Goldberg_Callie_SR$AgeMeans*0.218+8.33, "NA")))
+# Goldberg_Callie_SR<-Goldberg_Callie_SR%>%
+#   mutate(w16PSAI_1 = ifelse(Goldberg_Callie_SR$w14chgender_1==-1,
+#             Goldberg_Callie_SR$w16PSAI*1.075-Goldberg_Callie_SR$AgeMeans*0.177+0.088 ,
+#  ifelse(Goldberg_Callie_SR$w14chgender_1==1,
+#            Goldberg_Callie_SR$w16PSAI*1.026-Goldberg_Callie_SR$AgeMeans*0.218+8.33, "NA")))
 
 Goldberg_Callie_SR<-Goldberg_Callie_SR%>%
   mutate(w16PSAI = as.numeric(w16PSAI))
@@ -537,10 +545,12 @@ Goldberg_Callie_SR<-Goldberg_Callie_SR%>%
 
 
 ```{r, include = FALSE}
-Goldberg_Callie_SR<- Goldberg_Callie_SR%>%
-  mutate(HHT_HouseMean= rowMeans(Goldberg_Callie_SR
-          %>% select(w14HHT1_1, w14HHT2_1, w14HHT3_1, w14HHT4_1, w14HHT5_1, w14HHT6_1,w14HHT7_1, w14HHT8_1, w14HHT9_1, w14HHT10_1,  w14HHT11_1, w14HHT12_1, w14HHT13_1, w14HHT14_1,
-w14HHT1_2, w14HHT2_2, w14HHT3_2, w14HHT4_2, w14HHT5_2, w14HHT6_2,w14HHT7_2, w14HHT8_2, w14HHT9_2, w14HHT10_2, w14HHT11_2, w14HHT12_2, w14HHT13_2, w14HHT14_2), na.rm = TRUE))
+Goldberg_Callie_SR<-Goldberg_callie%>%
+  mutate(HHT_HouseMean_1= rowMeans(select(Goldberg_callie, w14HHT1_1:w14HHT14_1), na.rm= TRUE))%>%
+  mutate(HHT_HouseMean_2= rowMeans(select(Goldberg_callie, w14HHT1_2, w14HHT2_2, w14HHT3_2, w14HHT4_2, w14HHT5_2, w14HHT6_2,w14HHT7_2, w14HHT8_2, w14HHT9_2, w14HHT10_2, w14HHT11_2, w14HHT12_2, w14HHT13_2, w14HHT14_2), na.rm = TRUE))
+                                   
+          
+
 
 ```
 
@@ -565,7 +575,11 @@ attributes(Goldberg_callie$w14HHT13_2)
 
 #Initial Model- PSAI Score vs. Household Division of Labor
 ```{r include=FALSE}
-L1<- lm(w16PSAI~HHT_HouseMean, data=Goldberg_Callie_SR, na.action = na.exclude)
+
+L1<- gls(w16PSAI_1~ HHT_HouseMean_1 + HHT_HouseMean_2 + as.factor(w14chgender_1),
+         data=Goldberg_Callie_SR,
+         correlation = corCompSymm(form=~1|famid),
+         na.action = na.omit)
 ```
 
 #Figure 1
@@ -577,16 +591,28 @@ summary(L1)
 
 #Model 2- PSAI Score vs. Parental makeup 
 ```{r}
-L2<- lm(w16PSAI~ sexor, data=Goldberg_Callie_SR, na.action = na.exclude)
- 
+names(select(Goldberg_callie, contains("sex")))
+L2<- gls(w16PSAI_1~ as.factor(group)+ as.factor(w14chgender_1),
+         data=Goldberg_Callie_SR,
+         correlation = corCompSymm(form=~1|famid),
+         na.action = na.omit)
 
 summary(L2)
 ```
 
 #Model 3
 ```{r}
-ggplot(data = Goldberg_Callie_SR, aes(x= sexor, y =HHT_HouseMean))+geom_point()+labs(title="Divsion of Labour and Parental Gender Composition", y="Household Tasks Distribution", x="Parental Gender Composition" )
+L3<- gls(w16PSAI_1~as.factor(group) + HHT_HouseMean_1+ HHT_HouseMean_2+ as.factor(w14chgender_1),
+         data=Goldberg_Callie_SR,
+         correlation = corCompSymm(form=~1|famid),
+         na.action = na.omit) 
+
+summary(L3)
+
+attributes(Goldberg_callie$group)
 ```
+
+
 
 ```{r Figure 1}
 #plot(L1)
