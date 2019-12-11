@@ -50,6 +50,8 @@ library(dplyr)
 library(ggplot2)
 library(plyr)
 library(nlme)
+
+
 ```
 
 #Analysis Strategy
@@ -475,6 +477,10 @@ Goldberg_Callie_SR<-join(AgeMRejoin,Goldberg_Callie_SR)
 
 ```
 
+
+
+
+
 ```{r, include = FALSE}
 goldberg_psai<- Goldberg_callie %>%
   select(w16activ1_1, w16activ2_1, w16activ3_1,w16activ4_1, w16activ5_1, w16activ6_1, w16activ7_1, w16activ8_1,w16activ9_1, w16activ10_1, w16activ11_1, w16toys1_1, w16toys2_1, w16toys3_1, w16toys4_1, w16toys5_1, w16toys6_1, w16toys7_1, w16charac1_1, w16charac2_1, w16charac3_1, w16charac4_1, w16charac5_1, w16charac6_1) %>%
@@ -491,9 +497,12 @@ psai_alpha_0 <- psai_alpha %>%
 
 Goldberg_Callie_SR$w16PSAI <- rowMeans(goldberg_psai %>% select(w16rt2, w16rt4, w16rt7, w16ra1, w16ra2, w16ra3, w16ra6, w16ra9, w16ra11, w16rc4, w16rc5, w16rc6, w16charac1_1, w16charac2_1, w16charac3_1, w16toys1_1, w16toys3_1, w16toys5_1, w16toys6_1, w16activ4_1, w16activ5_1, w16activ7_1, w16activ8_1, w16activ10_1), na.rm = TRUE)
 
-#cronbach(psai_alpha)
+ICC_1c<- cronbach(psai_alpha)
+ICC_1c
 
-
+ICC_1<- icc(psai_alpha)
+ICC_1
+  
 goldberg_hw<- Goldberg_callie%>%
   select(w14HHT1_1:w14HHT13_1)
 hw<- corr.test(goldberg_hw)$r
@@ -503,7 +512,6 @@ hw_a<- alpha(hw)
 ```
 
 ```{r, include = FALSE}
-
 #PSAI Final score
 
 Goldberg_Callie_SR$w16PSAI_1 <- rowMeans(goldberg_psai %>% select(w16rt2, w16rt4, w16rt7, w16ra1, w16ra2, w16ra3, w16ra6, w16ra9, w16ra11, w16rc4, w16rc5, w16rc6, w16charac1_1, w16charac2_1, w16charac3_1, w16toys1_1, w16toys3_1, w16toys5_1, w16toys6_1, w16activ4_1, w16activ5_1, w16activ7_1, w16activ8_1, w16activ10_1), na.rm = TRUE)
@@ -516,6 +524,11 @@ Goldberg_Callie_SR$w16PSAI_2 <- rowMeans(select(Goldberg_Callie_SR, w16rt2_2, w1
 
 ```
 
+
+```{r}
+ICC<- cronbach(Goldberg_Callie_SR$w16PSAI_1)
+ICC
+```
 
 ```{r}
 Goldberg_Callie_SR %>%
@@ -563,6 +576,24 @@ Goldberg_Callie_SR$w14chcare_2<- rowMeans(select(Goldberg_Callie_SR, w14chcare1_
 
 ```
 
+
+
+
+#Graphs
+
+```{r}
+#install.packages("psy")
+library(psy)
+#install.packages("RColorBrewer")
+library(RColorBrewer)
+
+pal<- brewer.pal(4, "Greys")
+
+```
+
+
+
+
 #Initial Model- PSAI Score vs. Household Division of Labor
 ```{r include=FALSE}
 
@@ -593,7 +624,6 @@ summary(L2)
 
 #Model 3
 ```{r}
-
 favstats(w16PSAI_1 ~as.factor(group)|as.factor(w14chgender_1), data= Goldberg_Callie_SR)
 
 L3<- gls(w16PSAI_1~as.factor(group) + HHT_HouseMean_1+ HHT_HouseMean_2+ as.factor(w14chgender_1),
@@ -608,36 +638,156 @@ favstats= data.frame(favstats(w16PSAI_1 ~as.factor(group)|as.factor(w14chgender_
 favstats<- favstats%>%
   mutate(Sexor="N/A", CH_Gender="N/A")
 
-favstats[1, "Sexor"]<- "lesbian"
-favstats[4, "Sexor"]<- "lesbian"
-favstats[2, "Sexor"]<- "gay"
-favstats[5, "Sexor"]<- "gay"
-favstats[3, "Sexor"]<- "heterosexual"
-favstats[6, "Sexor"]<- "heterosexual"
+favstats[1, "Sexor"]<- "Lesbian"
+favstats[4, "Sexor"]<- "Lesbian"
+favstats[2, "Sexor"]<- "Gay"
+favstats[5, "Sexor"]<- "Gay"
+favstats[3, "Sexor"]<- "Heterosexual"
+favstats[6, "Sexor"]<- "Heterosexual"
 
-favstats[1:3, "CH_Gender"]<- "girl"
-favstats[4:6, "CH_Gender"]<- "boy"
-favstats[7, "CH_Gender"]<- "girl"
-favstats[8, "CH_Gender"]<- "boy"
+favstats[1:3, "CH_Gender"]<- "Girl"
+favstats[4:6, "CH_Gender"]<- "Boy"
+favstats[7, "CH_Gender"]<- "Girl"
+favstats[8, "CH_Gender"]<- "Boy"
+favstats[7:8, "Sexor"]<- "All"
 
 
 
-View(favstats)
+#View(favstats)
 favstats$gender_group <- favstats$as.factor.w14chgender_1.
+```
 
+```{r}
+ggplot(favstats, aes(x= gender_group, y=mean, fill=CH_Gender))+geom_col()+
+  scale_fill_manual(values=pal, "Parent Gender\n Composition", labels=c("Lesbian", "Gay", "Heterosexual", "All"))+
+  labs(title= "Means of PSAI Scores reported by Partner 1", x= "Child Gender Group", y="Mean PSAI Score")
 
-ggplot(favstats, aes(x= gender_group, y=mean, fill=CH_Gender))+geom_col()
-
+```
+```{r}
 #favstats_g <- fav
-ggplot(favstats, aes(x= gender_group, y=mean, fill=Sexor))+geom_col()
+G1<- ggplot(favstats, aes(x= CH_Gender, y=mean, fill=Sexor))+geom_bar(stat="identity",position="dodge" )+
+ # coord_flip()+
+  scale_fill_manual(values=pal, "Parent Gender\n Composition", labels=c("Lesbian", "Gay", "Heterosexual", "All"))+
+  labs(title= "Mean of PSAI Scores reported \nby Partner 1", x= "Child Gender", y="Mean PSAI Score")
+
+G1
+  
+```
+
+
+#Partner2
+```{r}
+favstats(w16PSAI_2 ~as.factor(group)|as.factor(w14chgender_1), data= Goldberg_Callie_SR)
+
+L4<- gls(w16PSAI_2~as.factor(group) + HHT_HouseMean_1+ HHT_HouseMean_2+ as.factor(w14chgender_1),
+         data=Goldberg_Callie_SR,
+         correlation = corCompSymm(form=~1|famid),
+         na.action = na.omit) 
+
+summary(L4)
+
+attributes(Goldberg_callie$group)
+favstats_2= data.frame(favstats(w16PSAI_2 ~as.factor(group)|as.factor(w14chgender_1), data= Goldberg_Callie_SR))
+favstats_2<- favstats_2%>%
+  mutate(Sexor="N/A", CH_Gender="N/A")
+
+favstats_2[1, "Sexor"]<- "Lesbian"
+favstats_2[4, "Sexor"]<- "Lesbian"
+favstats_2[2, "Sexor"]<- "Gay"
+favstats_2[5, "Sexor"]<- "Gay"
+favstats_2[3, "Sexor"]<- "Heterosexual"
+favstats_2[6, "Sexor"]<- "Heterosexual"
+
+favstats_2[1:3, "CH_Gender"]<- "Girl"
+favstats_2[4:6, "CH_Gender"]<- "Boy"
+favstats_2[7, "CH_Gender"]<- "Girl"
+favstats_2[8, "CH_Gender"]<- "Boy"
+favstats_2[7:8, "Sexor"]<- "All"
+
+
+
+#View(favstats)
+favstats_2$gender_group <- favstats_2$as.factor.w14chgender_1.
+```
+
+
+```{r}
+
+```
+
+```{r}
+
+ggplot(favstats_2, aes(x= gender_group, y=mean, fill=CH_Gender))+geom_col()+
+  scale_fill_manual(values=pal, "Parent Gender\n Composition", labels=c("Lesbian", "Gay", "Heterosexual", "All"))+
+  labs(title= "Means of PSAI Scores reported\n by Partner 2", x= "Child Gender", y="Mean PSAI Score")
+
+```
+
+```{r}
+#favstats_g <- fav
+ggplot(favstats_2, aes(x= CH_Gender, y=mean, fill=Sexor))+geom_bar(stat="identity" )+
+ # coord_flip()+
+  scale_fill_manual(values=pal, "Parent Gender\n Composition", labels=c("Lesbian", "Gay", "Heterosexual", "All"))+
+  labs(title= "Mean of PSAI Scores reported \nby Partner 2", x= "Child Gender Group", y="Mean PSAI Score")
+  
+
 ```
 
 
 
+```{r}
+#favstats_g <- fav
+G2<- ggplot(favstats_2, aes(x= CH_Gender, y=mean, fill=Sexor))+geom_bar(stat="identity",position="dodge" )+
+ # coord_flip()+
+  scale_fill_manual(values=pal, "Parent Gender\n Composition", labels=c("Lesbian", "Gay", "Heterosexual", "All"))+
+  labs(title= "Mean of PSAI Scores reported \nby Partner 2", x= "Child Gender", y="Mean PSAI Score")
+
+G2
+  
+```
 
 
+```{r}
+
+ #install.packages("formattable")
+library(formattable)
+
+formattable(favstats)
+
+```
 
 
+```{r}
+
+favstatsTable<- favstats
+
+
+  
+colnames(favstatsTable)[11]<- "Parent Gender Composition"
+colnames(favstatsTable)[12]<- "Child's Gender"
+
+favstatsTable<-favstatsTable%>%
+select(-as.factor.w14chgender_1.,	-gender_group)
+favstatsTable_1<-formattable(favstatsTable)
+favstatsTable_1
+
+```
+
+```{r}
+
+favstatsTable2<- favstats_2
+
+
+  
+colnames(favstatsTable2)[11]<- "Parent Gender Composition"
+colnames(favstatsTable2)[12]<- "Child's Gender"
+
+favstatsTable2<-favstatsTable2%>%
+select(-as.factor.w14chgender_1.,	-gender_group)
+favstatsTable_2<-formattable(favstatsTable2)
+favstatsTable_2
+
+```
 
 
 
