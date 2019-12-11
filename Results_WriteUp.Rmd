@@ -576,7 +576,7 @@ attributes(Goldberg_callie$w14HHT13_2)
 #Initial Model- PSAI Score vs. Household Division of Labor
 ```{r include=FALSE}
 
-L1<- gls(w16PSAI_1~ HHT_HouseMean_1 + HHT_HouseMean_2 + as.factor(w14chgender_1),
+L1<- gls(w16PSAI_1~ HHT_HouseMean_1+ HHT_HouseMean_2 + as.factor(w14chgender_1)+ w14chcare_1 +w14chcare_2 +HHT_HouseMean_1*w14chcare_1+HHT_HouseMean_2*w14chcare_2,
          data=Goldberg_Callie_SR,
          correlation = corCompSymm(form=~1|famid),
          na.action = na.omit)
@@ -584,7 +584,8 @@ L1<- gls(w16PSAI_1~ HHT_HouseMean_1 + HHT_HouseMean_2 + as.factor(w14chgender_1)
 
 #Figure 1
 ```{r}
-anova(L1)
+?ggplot
+ggplot(Goldberg_Callie_SR, aes(x= HHT_HouseMean_1, y= w14chcare_1))+geom_jitter()
 summary(L1)
 ```
 
@@ -613,8 +614,24 @@ L3<- gls(w16PSAI_1~as.factor(group) + HHT_HouseMean_1+ HHT_HouseMean_2+ as.facto
 summary(L3)
 
 attributes(Goldberg_callie$group)
+favstats= data.frame(favstats(w16PSAI_1 ~as.factor(group)|as.factor(w14chgender_1), data= Goldberg_Callie_SR))
+View(favstats)
+favstats$gender_group <- favstats$as.factor.w14chgender_1.
+
+favstats_g <- fav
+ggplot(favstats, aes(x= gender_group, y=mean))+geom_col()
 ```
 
+
+```{r}
+names(select(Goldberg_callie, w14chcare1_1:w14chcare25_1 ))
+
+attributes(Goldberg_callie$w14chcare1_1)
+
+Goldberg_Callie_SR$w14chcare_1<- rowMeans(select(Goldberg_Callie_SR, w14chcare1_1:w14chcare25_1), na.rm= TRUE)
+Goldberg_Callie_SR$w14chcare_2<- rowMeans(select(Goldberg_Callie_SR, w14chcare1_2:w14chcare25_2), na.rm= TRUE)
+
+```
 
 
 ```{r Figure 1}
