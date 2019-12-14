@@ -1,0 +1,247 @@
+---
+title: "Measures and Descriptive Statistics"
+author: "Isabel Zamudio-Moore"
+date: "December 14, 2019"
+output: html_document
+---
+---
+title             : "PSY/SDS 364: Measures and Descriptive Statistics"
+shorttitle        : "Measures and Descriptive Statistic"
+
+author: 
+  - name          : "Margret Perry"
+    affiliation   : "1"
+  - name          : "Callie Selvin"
+    affliation    : "2"
+  - name          : "Isabel Zamudio-Moore"
+    affliation    : "3"
+  
+    corresponding : yes    # Define only one corresponding author
+    address       : "Northampton, MA"
+    email         : "izamudiomoore@smith.edu"
+
+affiliation:
+  - id            : "1"
+    institution   : "Smith College"
+
+author_note: >
+  Smith College
+  
+keywords          : "Division of Labor, Gender Role Development, Preschool Activities Inventory"
+wordcount         : "X"
+
+bibliography      : ["MDSreferences.bib","r-references.bib"]
+
+figsintext        : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : no
+
+lang              : "english"
+class             : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r include = FALSE}
+library(papaja)
+library(mosaic)
+library(psych)
+#install.packages("psych")
+#install.packages("plyr")
+library(psysds364data)
+library(devtools)
+library(tidyr)
+library(mosaic)
+library(dplyr)
+library(ggplot2)
+library(plyr)
+```
+
+```{r create_r-references}
+r_refs(file = "r-references.bib")
+my_citation <- cite_r(file = "MDSreferences.bib")
+```
+
+# Dataset: Goldberg
+
+# Question: How does the display of gender roles in children vary with the change in delegation of household responsibilities between parents?
+
+#Methods
+
+##Measures
+The Preschool Activities Inventory @golombok1993pre is a psychometric scale that measures gender-typed behaviors in children ages 2-7. The 24-question scale has three sections: toys (7 items), activities (11 items), and characteristics (6 items). Each question is answered by a caregiver on a five point rating scale ranging from 1-never to 5-very often. The toys and activities questions prompt the caregiver to answer the frequency in which their child played with the type of toy (e.g. tool set) or activity (e.g. playing house) in the past month.The scale was reliable, alpha = 0.64 and the intraclass correlation was ICC = 0.54.
+
+Responsibility for Child Care @barnett1987determinants. Child Care responsibility variable measures the proportion of child care that the actor participates in.  Responsibility is defined by @barnett1987determinants as as "remembering, planning, and scheduling” and it examines 11 child care tasks (e.g. birthday party; take to doctor/dentist; go to teacher conference; supervise morning routine; clean up room; spend special time at bedtime i.e.)
+Division of childcare chores was taken from Halving it all [@deutsch1999halving]. In this book she lists 32 child care tasks, 28 of which are included in this study. Items included tasks such as “reading/singing to your child” and “dressing your child.”
+Proportion of housework @cowan1988does measures the proportion of house labor that the actor performs. It includes 12 items that are divided up into three areas of family life. The first is household and family tasks which contain tasks like cooking, care for plants or yard, and laundry. Next is family decisions which includes community involvement and vacation planning. The last area is child related tasks such as feeding, arranging for child care, and bathing. The scale used here is fairly reliable as alph = ‘r printnum(hw_a)’ . 
+
+
+```{r}
+CoupleData<- Goldberg_callie%>%
+  filter(partnum==1)
+
+ParNum<- NROW(Goldberg_callie)
+
+CoupleNum<- NROW(CoupleData)
+```
+
+
+```{r ,include = FALSE}
+
+### same freq as w14CBCLgender_2 and quest: there is no documentation for what 3,5, and 22 mean
+
+#sexor based datasets
+samesex_gb<- Goldberg_callie%>%
+  filter(sexor == 1)
+samesexIndivNum<- NROW(samesex_gb)
+
+samesexCouple<- samesex_gb%>%
+  filter(partnum==1)
+
+samesexCoupleNum<- NROW(samesexCouple)
+
+hetero_gb<- Goldberg_callie%>%
+  filter(sexor == -1)
+heteroIndivNum<- NROW(hetero_gb)
+
+heteroCouple<- hetero_gb%>%
+  filter(partnum==1)
+
+heteroCoupleNum<- NROW(heteroCouple)
+
+```
+
+```{r , include = FALSE}
+FamInc<- CoupleData%>%
+  mutate(ww11FamInc=as.integer(w11FamInc_1))%>%
+mutate( w11FamInc= ifelse(w11FamInc_1 %in% 0:20000, "20k or less", ifelse(w11FamInc_1 %in% 20001:40000, "20k-40k", ifelse(w11FamInc_1 %in% 40001:60000, "40k-60k", ifelse(w11FamInc_1 %in% 60001:80000, "60k-80k", ifelse(w11FamInc_1 %in% 80001:100000, "80k-100k", ifelse(w11FamInc_1 %in% 100001:730000, "100k+", "NA" )))))))
+
+```
+
+
+```{r include = FALSE}
+SixIncome<- FamInc%>%
+  filter(w11FamInc=="100k+")
+
+SixIncome<- NROW(SixIncome)
+SixIncome
+```
+
+
+```{r include = FALSE}
+FiveIncome<- FamInc%>%
+  filter(w11FamInc!="100k+", ww11FamInc!="NA")
+
+FiveIncome<- NROW(FiveIncome)
+FiveIncome
+```
+
+```{r include = FALSE}
+NAIncome<- FamInc%>%
+  filter(w11FamInc=="NA")
+
+NAIncome<- NROW(NAIncome)
+NAIncome
+
+```
+
+```{r}
+cortest<-corr.test(select(Goldberg_callie, w16activ1_2, w16activ2_2, w16activ3_2,w16activ4_2, w16activ5_2, w16activ6_2, w16activ7_2, w16activ8_2,w16activ9_2, w16activ10_2, w16activ11_2))$r
+```
+
+
+## Preliminary Analyses  
+The subset of the Goldberg data we have chosen to work with includes `r printnum( ParNum)` individuals and `r printnum(CoupleNum)`  couples (`r printnum(samesexCoupleNum)` same sex couples and `r printnum(heteroCoupleNum)` heterosexual couples).  Of the adopted children 50 were boys,  60 were girls, and for 12 of the children the gender was not recorded. Half of the families make 100,000 dollars or greater per year while the other half make less. Specifically, it was found that `r printnum(SixIncome)` made 100,000 dollars or more while `r printnum(FiveIncome)` made less than six figures.  
+
+##Participant Recruitment   
+<p>
+The data come from a larger longitudinal study on the transition to parenthood. <p>
+Couples in the study were first time parents and adopting their first child. Adoption agencies across the US were asked to provide study information to clients seeking to adopt. Effort was made to contact agencies in states that had a high percentage of same-sex couples. Over 30 agencies provided information to clients; interested clients contacted the principal investigator for participation details. Both same-sex and heterosexual couples were targeted through these agencies to facilitate similarity on income and geographic location. Organizations such as the Human Rights Campaign, a gay political organization, also disseminated study information.   
+<p>
+
+##Procedure   
+
+Both members of each couple were informed of the risks and benefits of the study, <p>   gave consent, and participated at pre-adoptive placement (Time 1 or T1) and 2 years post-adoptive placement (T2).  At each phase, they were sent a packet of questionnaires to complete and they were interviewed over the phone. Interviews lasted 1-1.5 hours.
+
+Within our data we have excluded from the data all instances where there is no value entered for the scale for toys, activities, or characteristics from the Preschool Activities Inventory. It was decided do so as it would allow us to look at the gendered type play as a scale that looks at gendered type play in a scale from feminine to masculine.
+Additionally, if the rating for household contribution is filtered for missing observations in order to create a scale for how equal distributed the household labor is between a couple.
+
+
+`r my_citation`
+
+
+#Graphs
+
+<!-- #Age of Children in Years  -->
+<!-- ```{r} -->
+<!-- apa_beeplot( -->
+<!--   data = Goldberg_callie, -->
+<!--   id = "famid", -->
+<!--   dv= "w14CBCLage_1", -->
+<!--   factors = "sexor" -->
+<!-- ) -->
+<!-- ``` -->
+<!-- The graph is divided by sexual orientation (-1 = Heterosexual, 1 = Same-Sex) -->
+
+<!-- ```{r} -->
+<!-- apa_beeplot( -->
+<!--   data = Goldberg_callie, -->
+<!--   id = "famid", -->
+<!--   dv= "w11FamInc_1", -->
+<!--   factors = "sexor" -->
+<!-- ) -->
+<!-- ``` -->
+<!-- The graph is divided by sexual orientation (-1 = Heterosexual, 1 = Same sex) -->
+
+
+
+
+#Correlation Test
+```{r}
+cortest<-corr.test(select(Goldberg_callie, w16activ1_2, w16activ2_2, w16activ3_2,w16activ4_2, w16activ5_2, w16activ6_2, w16activ7_2, w16activ8_2,w16activ9_2, w16activ10_2, w16activ11_2))$r
+
+as.data.frame(cortest)
+
+```
+
+
+```{r}
+##Demographic data attributes (gender, sexual orentation, regilion)
+attributes(Goldberg_callie$gender_1)
+attributes(Goldberg_callie$w14CBCLgender_1)
+attributes(Goldberg_callie$w14chgender_2)
+attributes(Goldberg_callie$w14Religion_1)
+attributes(Goldberg_callie$sexor)
+attributes(Goldberg_callie$w14HHT1_1)
+attributes(Goldberg_callie$w14AdSex_2)
+
+
+##The occurances of demographic varibles
+count(Goldberg_callie, vars= "w14Religion_1")
+count(Goldberg_callie, vars= "sexor")
+count(Goldberg_callie, vars= "gender_1")
+count(Goldberg_callie, vars= "w14AdSex_1")
+count(Goldberg_callie, vars= "w14CBCLgender_1") 
+
+
+count(hetero_gb, vars= "w14Religion_1")
+count(hetero_gb, vars= "sexor")
+count(hetero_gb, vars= "gender_1")
+count(hetero_gb, vars= "w14AdSex_1")
+count(hetero_gb, vars= "w14CBCLgender_1") 
+
+```
+
+
+
+
+
+\newpage
+
+# References
+
+
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
